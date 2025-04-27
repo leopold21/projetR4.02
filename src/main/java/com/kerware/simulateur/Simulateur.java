@@ -211,27 +211,7 @@ public class Simulateur {
         long abt1 = Math.round(rNetDecl1 * tAbt);
         long abt2 = Math.round(rNetDecl2 * tAbt);
 
-        if (abt1 > lAbtMax) {
-            abt1 = lAbtMax;
-        }
-        if ( sitFam == SituationFamiliale.MARIE || sitFam == SituationFamiliale.PACSE ) {
-            if (abt2 > lAbtMax) {
-                abt2 = lAbtMax;
-            }
-        }
-
-        if (abt1 < lAbtMin) {
-            abt1 = lAbtMin;
-        }
-
-        if ( sitFam == SituationFamiliale.MARIE || sitFam == SituationFamiliale.PACSE ) {
-            if (abt2 < lAbtMin) {
-                abt2 = lAbtMin;
-            }
-        }
-
-        abt = abt1 + abt2;
-        System.out.println( "Abattement : " + abt );
+        calculAbattement(sitFam, abt1, abt2);
 
         rFRef = rNetDecl1 + revNetDecl2 - abt;
         if ( rFRef < 0 ) {
@@ -242,7 +222,6 @@ public class Simulateur {
 
 
         // parts déclarants
-        // EXIG  : EXG_IMPOT_03
         nbPtsDecl = nombreDePartDeclarant(sitFam);
 
         System.out.println( "Nombre d'enfants  : " + nbEnf );
@@ -396,6 +375,30 @@ public class Simulateur {
 
         System.out.println( "Impôt sur le revenu net final : " + mImp );
         return  (int)mImp;
+    }
+
+    public void calculAbattement(SituationFamiliale situationFamiliale, long abt1, long abt2) {
+        if (abt1 > lAbtMax) {
+            abt1 = lAbtMax;
+        }
+        if ( situationFamiliale == SituationFamiliale.MARIE || situationFamiliale == SituationFamiliale.PACSE ) {
+            if (abt2 > lAbtMax) {
+                abt2 = lAbtMax;
+            }
+        }
+
+        if (abt1 < lAbtMin) {
+            abt1 = lAbtMin;
+        }
+
+        if ( situationFamiliale == SituationFamiliale.MARIE || situationFamiliale == SituationFamiliale.PACSE ) {
+            if (abt2 < lAbtMin) {
+                abt2 = lAbtMin;
+            }
+        }
+
+        abt = abt1 + abt2;
+        System.out.println( "Abattement : " + abt );
     }
 
 
