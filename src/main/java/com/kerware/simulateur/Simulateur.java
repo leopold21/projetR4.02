@@ -160,40 +160,8 @@ public class Simulateur {
     // Fonction de calcul de l'impôt sur le revenu net en France en 2024 sur les revenu 2023
 
     public int calculImpot( int revNetDecl1, int revNetDecl2, SituationFamiliale sitFam, int nbEnfants, int nbEnfantsHandicapes, boolean parentIsol) {
-
         // Préconditions
-        if ( revNetDecl1  < 0 || revNetDecl2 < 0 ) {
-            throw new IllegalArgumentException("Le revenu net ne peut pas être négatif");
-        }
-
-        if ( nbEnfants < 0 ) {
-            throw new IllegalArgumentException("Le nombre d'enfants ne peut pas être négatif");
-        }
-
-        if ( nbEnfantsHandicapes < 0 ) {
-            throw new IllegalArgumentException("Le nombre d'enfants handicapés ne peut pas être négatif");
-        }
-
-        if ( sitFam == null ) {
-            throw new IllegalArgumentException("La situation familiale ne peut pas être null");
-        }
-
-        if ( nbEnfantsHandicapes > nbEnfants ) {
-            throw new IllegalArgumentException("Le nombre d'enfants handicapés ne peut pas être supérieur au nombre d'enfants");
-        }
-
-        if ( nbEnfants > 7 ) {
-            throw new IllegalArgumentException("Le nombre d'enfants ne peut pas être supérieur à 7");
-        }
-
-        if ( parentIsol && ( sitFam == SituationFamiliale.MARIE || sitFam == SituationFamiliale.PACSE ) ) {
-            throw new IllegalArgumentException("Un parent isolé ne peut pas être marié ou pacsé");
-        }
-
-        boolean seul = sitFam == SituationFamiliale.CELIBATAIRE || sitFam == SituationFamiliale.DIVORCE || sitFam == SituationFamiliale.VEUF;
-        if (  seul && revNetDecl2 > 0 ) {
-            throw new IllegalArgumentException("Un célibataire, un divorcé ou un veuf ne peut pas avoir de revenu pour le déclarant 2");
-        }
+        verifierPreconditions(revNetDecl1, revNetDecl2, sitFam, nbEnfants, nbEnfantsHandicapes, parentIsol);
 
         // Initialisation des variables
 
@@ -275,23 +243,7 @@ public class Simulateur {
 
         // parts déclarants
         // EXIG  : EXG_IMPOT_03
-        switch ( sitFam ) {
-            case CELIBATAIRE:
-                nbPtsDecl = 1;
-                break;
-            case MARIE:
-                nbPtsDecl = 2;
-                break;
-            case DIVORCE:
-                nbPtsDecl = 1;
-                break;
-            case VEUF:
-                nbPtsDecl = 1;
-                break;
-            case PACSE:
-                nbPtsDecl = 2;
-                break;
-        }
+        nbPtsDecl = nombreDePartDeclarant(sitFam);
 
         System.out.println( "Nombre d'enfants  : " + nbEnf );
         System.out.println( "Nombre d'enfants handicapés : " + nbEnfH );
@@ -447,7 +399,61 @@ public class Simulateur {
     }
 
 
+    public void verifierPreconditions(int revNetDecl1, int revNetDecl2, SituationFamiliale sitFam, int nbEnfants, int nbEnfantsHandicapes, boolean parentIsol)  {
+        if ( revNetDecl1  < 0 || revNetDecl2 < 0 ) {
+            throw new IllegalArgumentException("Le revenu net ne peut pas être négatif");
+        }
 
+        if ( nbEnfants < 0 ) {
+            throw new IllegalArgumentException("Le nombre d'enfants ne peut pas être négatif");
+        }
 
+        if ( nbEnfantsHandicapes < 0 ) {
+            throw new IllegalArgumentException("Le nombre d'enfants handicapés ne peut pas être négatif");
+        }
+
+        if ( sitFam == null ) {
+            throw new IllegalArgumentException("La situation familiale ne peut pas être null");
+        }
+
+        if ( nbEnfantsHandicapes > nbEnfants ) {
+            throw new IllegalArgumentException("Le nombre d'enfants handicapés ne peut pas être supérieur au nombre d'enfants");
+        }
+
+        if ( nbEnfants > 7 ) {
+            throw new IllegalArgumentException("Le nombre d'enfants ne peut pas être supérieur à 7");
+        }
+
+        if ( parentIsol && ( sitFam == SituationFamiliale.MARIE || sitFam == SituationFamiliale.PACSE ) ) {
+            throw new IllegalArgumentException("Un parent isolé ne peut pas être marié ou pacsé");
+        }
+
+        boolean seul = sitFam == SituationFamiliale.CELIBATAIRE || sitFam == SituationFamiliale.DIVORCE || sitFam == SituationFamiliale.VEUF;
+        if (  seul && revNetDecl2 > 0 ) {
+            throw new IllegalArgumentException("Un célibataire, un divorcé ou un veuf ne peut pas avoir de revenu pour le déclarant 2");
+        }
+    }
+
+    public int nombreDePartDeclarant(SituationFamiliale situationFamiliale) {
+        try {
+            switch (situationFamiliale) {
+                case CELIBATAIRE:
+                    return 1;
+                case MARIE:
+                    return 2;
+                case DIVORCE:
+                    return 1;
+                case VEUF:
+                    return 1;
+                case PACSE:
+                    return 2;
+                default:
+                    throw new IllegalArgumentException("Cette situation familiale n'existe pas");
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Cette situation familiale n'existe pas", e);
+        }
+    }
 
 }
+
