@@ -208,10 +208,8 @@ public class Simulateur {
 
         // Abattement
         // EXIGENCE : EXG_IMPOT_02
-        long abt1 = Math.round(rNetDecl1 * tAbt);
-        long abt2 = Math.round(rNetDecl2 * tAbt);
 
-        calculAbattement(sitFam, abt1, abt2);
+        abt = calculAbattement(sitFam, revNetDecl1, revNetDecl2, tAbt);
 
         rFRef = calculRevenuFiscal(revNetDecl1, revNetDecl2, abt);
 
@@ -383,7 +381,9 @@ public class Simulateur {
         return rFRef;
     }
 
-    public void calculAbattement(SituationFamiliale situationFamiliale, long abt1, long abt2) {
+    public double calculAbattement(SituationFamiliale situationFamiliale, double rNetDecl1, double rNetDecl2, double tAbt) {
+        long abt1 = Math.round(rNetDecl1 * tAbt);
+        long abt2 = Math.round(rNetDecl2 * tAbt);
         if (abt1 > lAbtMax) {
             abt1 = lAbtMax;
         }
@@ -404,7 +404,7 @@ public class Simulateur {
         }
 
         abt = abt1 + abt2;
-        System.out.println( "Abattement : " + abt );
+        return abt;
     }
 
 
