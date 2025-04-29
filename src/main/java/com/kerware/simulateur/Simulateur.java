@@ -219,10 +219,7 @@ public class Simulateur {
         //calcul du nombre de parts déclarants
         nbPtsDecl = nombreDePartDeclarant(sitFam);
 
-        //calcul de part
-        System.out.println( "Nombre d'enfants  : " + nbEnf );
-        System.out.println( "Nombre d'enfants handicapés : " + nbEnfH );
-
+        //calcul du nombre de part
         nbPts = nombreDePart(nbPtsDecl, nbEnf, nbEnfH, parIso, sitFam);
         System.out.println( "Nombre de parts : " + nbPts );
 
@@ -350,31 +347,61 @@ public class Simulateur {
     }
 
     private double nombreDePart(double nbPtsDecl, int nbEnf, int nbEnfH, boolean parIso, SituationFamiliale sitFam) {
-        double nbPts;
+        double nbPts = 0;
         // parts enfants à charge
+        System.out.println( "Nombre d'enfants  : " + nbEnf );
+        System.out.println( "Nombre d'enfants handicapés : " + nbEnfH );
+        nbPts += nombreDePartEnfant(nbPtsDecl, nbEnf);
+
+
+        // parent isolé
+
+        System.out.println( "Parent isolé : " + parIso );
+        nbPts += nombreDePartParentIsole(parIso);
+
+
+        // Veuf avec enfant
+        nbPts += nombreDePartVeufAvecEnfant(sitFam, nbEnf);
+
+
+        // enfant handicapé
+        if (nbEnfH != 0){
+            nbPts += nombreDePartEnfantHandicape(nbEnfH);
+        }
+
+        return nbPts;
+    }
+
+    private double nombreDePartEnfantHandicape(int nbEnfH) {
+        return nbEnfH * 0.5;
+    }
+
+    private double nombreDePartVeufAvecEnfant(SituationFamiliale sitFam, int nbEnf) {
+        double nbPts = 0;
+        if ( sitFam == SituationFamiliale.VEUF && nbEnf > 0 ) {
+            nbPts = 1;
+        }
+        return nbPts;
+    }
+
+    private double nombreDePartParentIsole(boolean parIso) {
+        double nbPts = 0;
+        if ( parIso ) {
+            if ( nbEnf > 0 ){
+                nbPts = 0.5;
+            }
+        }
+        return nbPts;
+    }
+
+    private double nombreDePartEnfant(double nbPtsDecl, int nbEnf) {
+
+        double nbPts;
         if ( nbEnf <= 2 ) {
             nbPts = nbPtsDecl + nbEnf * 0.5;
         } else {
             nbPts = nbPtsDecl+  1.0 + ( nbEnf - 2 );
         }
-
-        // parent isolé
-
-        System.out.println( "Parent isolé : " + parIso );
-
-        if ( parIso ) {
-            if ( nbEnf > 0 ){
-                nbPts = nbPts + 0.5;
-            }
-        }
-
-        // Veuf avec enfant
-        if ( sitFam == SituationFamiliale.VEUF && nbEnf > 0 ) {
-            nbPts = nbPts + 1;
-        }
-
-        // enfant handicapé
-        nbPts = nbPts + nbEnfH * 0.5;
         return nbPts;
     }
 
