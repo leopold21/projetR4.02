@@ -225,27 +225,12 @@ public class Simulateur {
 
         // EXIGENCE : EXG_IMPOT_07:
         // Contribution exceptionnelle sur les hauts revenus
-        contribExceptionnelle = 0;
-        int i = 0;
-        do {
-            if ( rFRef >= limitesCEHR[i] && rFRef < limitesCEHR[i+1] ) {
-                if ( nbPtsDecl == 1 ) {
-                    contribExceptionnelle += ( rFRef - limitesCEHR[i] ) * tauxCEHRCelibataire[i];
-                } else {
-                    contribExceptionnelle += ( rFRef - limitesCEHR[i] ) * tauxCEHRCouple[i];
-                }
-                break;
-            } else {
-                if ( nbPtsDecl == 1 ) {
-                    contribExceptionnelle += ( limitesCEHR[i+1] - limitesCEHR[i] ) * tauxCEHRCelibataire[i];
-                } else {
-                    contribExceptionnelle += ( limitesCEHR[i+1] - limitesCEHR[i] ) * tauxCEHRCouple[i];
-                }
-            }
-            i++;
-        } while( i < 5);
 
-        contribExceptionnelle = Math.round( contribExceptionnelle );
+        contribExceptionnelle = contributionExceptionnel(rFRef, limitesCEHR, tauxCEHRCelibataire, tauxCEHRCouple, nbPtsDecl);
+        int i = 0;
+
+
+
         System.out.println( "Contribution exceptionnelle sur les hauts revenus : " + contribExceptionnelle );
 
         // Calcul impôt des declarants
@@ -344,6 +329,30 @@ public class Simulateur {
 
         System.out.println( "Impôt sur le revenu net final : " + mImp );
         return  (int)mImp;
+    }
+
+    private double contributionExceptionnel(double rFRef, int[] limitesCEHR, double[] tauxCEHRCelibataire, double[] tauxCEHRCouple, double nbPtsDecl) {
+        double contribExceptionnelle = 0;
+        int i = 0;
+        do {
+            if ( rFRef >= limitesCEHR[i] && rFRef < limitesCEHR[i+1] ) {
+                if ( nbPtsDecl == 1 ) {
+                    contribExceptionnelle += ( rFRef - limitesCEHR[i] ) * tauxCEHRCelibataire[i];
+                } else {
+                    contribExceptionnelle += ( rFRef - limitesCEHR[i] ) * tauxCEHRCouple[i];
+                }
+                break;
+            } else {
+                if ( nbPtsDecl == 1 ) {
+                    contribExceptionnelle += ( limitesCEHR[i+1] - limitesCEHR[i] ) * tauxCEHRCelibataire[i];
+                } else {
+                    contribExceptionnelle += ( limitesCEHR[i+1] - limitesCEHR[i] ) * tauxCEHRCouple[i];
+                }
+            }
+            i++;
+        } while( i < 5);
+        contribExceptionnelle = Math.round(contribExceptionnelle);
+        return contribExceptionnelle;
     }
 
     private double nombreDePart(double nbPtsDecl, int nbEnf, int nbEnfH, boolean parIso, SituationFamiliale sitFam) {
