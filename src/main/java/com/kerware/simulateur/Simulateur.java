@@ -206,48 +206,24 @@ public class Simulateur {
         System.out.println( "Revenu net declarant2 : " + rNetDecl2 );
         System.out.println( "Situation familiale : " + sitFam.name() );
 
-        // Abattement
-        // EXIGENCE : EXG_IMPOT_02
 
+        //calcul de l'abattement
         abt = calculAbattement(sitFam, revNetDecl1, revNetDecl2, tAbt);
+        System.out.println("Abattement: " + abt);
 
+        //calcul du revenu fiscal
         rFRef = calculRevenuFiscal(revNetDecl1, revNetDecl2, abt);
-
-
         System.out.println( "Revenu fiscal de référence : " + rFRef );
 
 
-        // parts déclarants
+        //calcul du nombre de parts déclarants
         nbPtsDecl = nombreDePartDeclarant(sitFam);
 
+        //calcul de part
         System.out.println( "Nombre d'enfants  : " + nbEnf );
         System.out.println( "Nombre d'enfants handicapés : " + nbEnfH );
 
-        // parts enfants à charge
-        if ( nbEnf <= 2 ) {
-            nbPts = nbPtsDecl + nbEnf * 0.5;
-        } else if ( nbEnf > 2 ) {
-            nbPts = nbPtsDecl+  1.0 + ( nbEnf - 2 );
-        }
-
-        // parent isolé
-
-        System.out.println( "Parent isolé : " + parIso );
-
-        if ( parIso ) {
-            if ( nbEnf > 0 ){
-                nbPts = nbPts + 0.5;
-            }
-        }
-
-        // Veuf avec enfant
-        if ( sitFam == SituationFamiliale.VEUF && nbEnf > 0 ) {
-            nbPts = nbPts + 1;
-        }
-
-        // enfant handicapé
-        nbPts = nbPts + nbEnfH * 0.5;
-
+        nbPts = nombreDePart(nbPtsDecl, nbEnf, nbEnfH, parIso, sitFam);
         System.out.println( "Nombre de parts : " + nbPts );
 
         // EXIGENCE : EXG_IMPOT_07:
@@ -371,6 +347,35 @@ public class Simulateur {
 
         System.out.println( "Impôt sur le revenu net final : " + mImp );
         return  (int)mImp;
+    }
+
+    private double nombreDePart(double nbPtsDecl, int nbEnf, int nbEnfH, boolean parIso, SituationFamiliale sitFam) {
+        double nbPts;
+        // parts enfants à charge
+        if ( nbEnf <= 2 ) {
+            nbPts = nbPtsDecl + nbEnf * 0.5;
+        } else {
+            nbPts = nbPtsDecl+  1.0 + ( nbEnf - 2 );
+        }
+
+        // parent isolé
+
+        System.out.println( "Parent isolé : " + parIso );
+
+        if ( parIso ) {
+            if ( nbEnf > 0 ){
+                nbPts = nbPts + 0.5;
+            }
+        }
+
+        // Veuf avec enfant
+        if ( sitFam == SituationFamiliale.VEUF && nbEnf > 0 ) {
+            nbPts = nbPts + 1;
+        }
+
+        // enfant handicapé
+        nbPts = nbPts + nbEnfH * 0.5;
+        return nbPts;
     }
 
     private double calculRevenuFiscal(int rNetDecl1, int revNetDecl2, double abt) {
