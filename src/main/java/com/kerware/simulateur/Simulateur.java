@@ -225,33 +225,14 @@ public class Simulateur {
 
         // EXIGENCE : EXG_IMPOT_07:
         // Contribution exceptionnelle sur les hauts revenus
-
         contribExceptionnelle = contributionExceptionnel(rFRef, limitesCEHR, tauxCEHRCelibataire, tauxCEHRCouple, nbPtsDecl);
-        int i = 0;
-
-
-
         System.out.println( "Contribution exceptionnelle sur les hauts revenus : " + contribExceptionnelle );
 
         // Calcul impôt des declarants
         // EXIGENCE : EXG_IMPOT_04
-        rImposable = rFRef / nbPtsDecl ;
 
-        mImpDecl = 0;
+        mImpDecl = calculImpotDeclarant(rFRef, nbPtsDecl, limites);
 
-        i = 0;
-        do {
-            if ( rImposable >= limites[i] && rImposable < limites[i+1] ) {
-                mImpDecl += ( rImposable - limites[i] ) * taux[i];
-                break;
-            } else {
-                mImpDecl += ( limites[i+1] - limites[i] ) * taux[i];
-            }
-            i++;
-        } while( i < 5);
-
-        mImpDecl = mImpDecl * nbPtsDecl;
-        mImpDecl = Math.round( mImpDecl );
 
         System.out.println( "Impôt brut des déclarants : " + mImpDecl );
 
@@ -259,7 +240,7 @@ public class Simulateur {
         // EXIGENCE : EXG_IMPOT_04
         rImposable =  rFRef / nbPts;
         mImp = 0;
-        i = 0;
+       int i = 0;
 
         do {
             if ( rImposable >= limites[i] && rImposable < limites[i+1] ) {
@@ -331,7 +312,27 @@ public class Simulateur {
         return  (int)mImp;
     }
 
-    private double contributionExceptionnel(double rFRef, int[] limitesCEHR, double[] tauxCEHRCelibataire, double[] tauxCEHRCouple, double nbPtsDecl) {
+    public double calculImpotDeclarant( double rFRef, double nbPtsDecl, int[] limites) {
+        double mImpDecl = 0;
+        double rImposable = rFRef / nbPtsDecl ;
+        int i = 0;
+
+        do {
+            if ( rImposable >= limites[i] && rImposable < limites[i+1] ) {
+                mImpDecl += ( rImposable - limites[i] ) * taux[i];
+                break;
+            } else {
+                mImpDecl += ( limites[i+1] - limites[i] ) * taux[i];
+            }
+            i++;
+        } while( i < 5);
+
+        mImpDecl = mImpDecl * nbPtsDecl;
+        mImpDecl = Math.round( mImpDecl );
+        return mImpDecl;
+    }
+
+    public double contributionExceptionnel(double rFRef, int[] limitesCEHR, double[] tauxCEHRCelibataire, double[] tauxCEHRCouple, double nbPtsDecl) {
         double contribExceptionnelle = 0;
         int i = 0;
         do {
@@ -355,7 +356,7 @@ public class Simulateur {
         return contribExceptionnelle;
     }
 
-    private double nombreDePart(double nbPtsDecl, int nbEnf, int nbEnfH, boolean parIso, SituationFamiliale sitFam) {
+    public double nombreDePart(double nbPtsDecl, int nbEnf, int nbEnfH, boolean parIso, SituationFamiliale sitFam) {
         double nbPts = 0;
         // parts enfants à charge
         System.out.println( "Nombre d'enfants  : " + nbEnf );
@@ -381,11 +382,11 @@ public class Simulateur {
         return nbPts;
     }
 
-    private double nombreDePartEnfantHandicape(int nbEnfH) {
+    public double nombreDePartEnfantHandicape(int nbEnfH) {
         return nbEnfH * 0.5;
     }
 
-    private double nombreDePartVeufAvecEnfant(SituationFamiliale sitFam, int nbEnf) {
+    public double nombreDePartVeufAvecEnfant(SituationFamiliale sitFam, int nbEnf) {
         double nbPts = 0;
         if ( sitFam == SituationFamiliale.VEUF && nbEnf > 0 ) {
             nbPts = 1;
@@ -393,7 +394,7 @@ public class Simulateur {
         return nbPts;
     }
 
-    private double nombreDePartParentIsole(boolean parIso) {
+    public double nombreDePartParentIsole(boolean parIso) {
         double nbPts = 0;
         if ( parIso ) {
             if ( nbEnf > 0 ){
@@ -403,7 +404,7 @@ public class Simulateur {
         return nbPts;
     }
 
-    private double nombreDePartEnfant(double nbPtsDecl, int nbEnf) {
+    public double nombreDePartEnfant(double nbPtsDecl, int nbEnf) {
 
         double nbPts;
         if ( nbEnf <= 2 ) {
@@ -414,7 +415,7 @@ public class Simulateur {
         return nbPts;
     }
 
-    private double calculRevenuFiscal(int rNetDecl1, int revNetDecl2, double abt) {
+    public double calculRevenuFiscal(int rNetDecl1, int revNetDecl2, double abt) {
         rFRef = rNetDecl1 + revNetDecl2 - abt;
         if ( rFRef < 0 ) {
             rFRef = 0;
