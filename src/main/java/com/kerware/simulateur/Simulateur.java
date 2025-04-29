@@ -213,10 +213,8 @@ public class Simulateur {
 
         calculAbattement(sitFam, abt1, abt2);
 
-        rFRef = rNetDecl1 + revNetDecl2 - abt;
-        if ( rFRef < 0 ) {
-            rFRef = 0;
-        }
+        rFRef = calculRevenuFiscal(revNetDecl1, revNetDecl2, abt);
+
 
         System.out.println( "Revenu fiscal de référence : " + rFRef );
 
@@ -375,6 +373,14 @@ public class Simulateur {
 
         System.out.println( "Impôt sur le revenu net final : " + mImp );
         return  (int)mImp;
+    }
+
+    private double calculRevenuFiscal(int rNetDecl1, int revNetDecl2, double abt) {
+        rFRef = rNetDecl1 + revNetDecl2 - abt;
+        if ( rFRef < 0 ) {
+            rFRef = 0;
+        }
+        return rFRef;
     }
 
     public void calculAbattement(SituationFamiliale situationFamiliale, long abt1, long abt2) {
