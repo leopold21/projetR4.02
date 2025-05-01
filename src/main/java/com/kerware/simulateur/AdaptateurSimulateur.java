@@ -62,7 +62,7 @@ public class AdaptateurSimulateur implements ICalculateurImpot {
 
     @Override
     public double getContribExceptionnelle() {
-        return simulateur.getContribExceptionnelle();
+        return simulateur.getMontantContributionExceptionnelle();
     }
 
     @Override
