@@ -64,9 +64,9 @@
 <th><img src="images/icon_warning_sml.gif" alt="" />&#160;Warnings</th>
 <th><img src="images/icon_error_sml.gif" alt="" />&#160;Errors</th></tr>
 <tr class="b">
-<td>5</td>
+<td>13</td>
 <td>0</td>
-<td>158</td>
+<td>171</td>
 <td>0</td></tr></table></section><section><a name="Files"></a>
 <h3><a name="Files"></a>Files</h3>
 <table border="0" class="bodyTable">
@@ -88,7 +88,7 @@
 <tr class="b">
 <td><a href="#com.2Fkerware.2Fsimulateurreusine.2FSimulateurReusine.java">com/kerware/simulateurreusine/SimulateurReusine.java</a></td>
 <td>0</td>
-<td>70</td>
+<td>83</td>
 <td>0</td></tr></table></section><section><a name="Rules"></a>
 <h3><a name="Rules"></a>Rules</h3>
 <table border="0" class="bodyTable">
@@ -99,18 +99,28 @@
 <th>Severity</th></tr>
 <tr class="b">
 <td>coding</td>
+<td><a class="externalLink" href="https://checkstyle.org/checks/coding/hiddenfield.html">HiddenField</a></td>
+<td>4</td>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
+<tr class="a">
+<td></td>
 <td><a class="externalLink" href="https://checkstyle.org/checks/coding/magicnumber.html">MagicNumber</a></td>
 <td>94</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
-<tr class="a">
+<tr class="b">
 <td></td>
 <td><a class="externalLink" href="https://checkstyle.org/checks/coding/missingswitchdefault.html">MissingSwitchDefault</a></td>
 <td>2</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
-<tr class="b">
+<tr class="a">
 <td>design</td>
 <td><a class="externalLink" href="https://checkstyle.org/checks/design/designforextension.html">DesignForExtension</a></td>
-<td>36</td>
+<td>37</td>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
+<tr class="b">
+<td>imports</td>
+<td><a class="externalLink" href="https://checkstyle.org/checks/imports/avoidstarimport.html">AvoidStarImport</a></td>
+<td>1</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
 <tr class="a">
 <td>metrics</td>
@@ -126,7 +136,7 @@
 <li>fileExtensions: <code>&quot;java&quot;</code></li>
 <li>max: <code>&quot;100&quot;</code></li>
 <li>ignorePattern: <code>&quot;^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://&quot;</code></li></ul></td>
-<td>22</td>
+<td>29</td>
 <td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td></tr>
 <tr class="a">
 <td></td>
@@ -691,99 +701,99 @@
 <th>Line</th></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>coding</td>
-<td>MagicNumber</td>
-<td>'11294' is a magic number.</td>
-<td>11</td></tr>
+<td>imports</td>
+<td>AvoidStarImport</td>
+<td>Using the '.*' form of import should be avoided - com.kerware.simulateurreusine.calcul.*.</td>
+<td>4</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'28797' is a magic number.</td>
+<td>'11294' is a magic number.</td>
 <td>12</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'82341' is a magic number.</td>
+<td>'28797' is a magic number.</td>
 <td>13</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'177106' is a magic number.</td>
+<td>'82341' is a magic number.</td>
 <td>14</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'6' is a magic number.</td>
-<td>17</td></tr>
+<td>'177106' is a magic number.</td>
+<td>15</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'0.11' is a magic number.</td>
-<td>21</td></tr>
+<td>'6' is a magic number.</td>
+<td>18</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'0.3' is a magic number.</td>
+<td>'0.11' is a magic number.</td>
 <td>22</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'0.41' is a magic number.</td>
+<td>'0.3' is a magic number.</td>
 <td>23</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'0.45' is a magic number.</td>
+<td>'0.41' is a magic number.</td>
 <td>24</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'5' is a magic number.</td>
-<td>26</td></tr>
+<td>'0.45' is a magic number.</td>
+<td>25</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'250000' is a magic number.</td>
-<td>30</td></tr>
+<td>'5' is a magic number.</td>
+<td>27</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'500000' is a magic number.</td>
+<td>'250000' is a magic number.</td>
 <td>31</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'1000000' is a magic number.</td>
+<td>'500000' is a magic number.</td>
 <td>32</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'5' is a magic number.</td>
-<td>35</td></tr>
+<td>'1000000' is a magic number.</td>
+<td>33</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'0.03' is a magic number.</td>
-<td>39</td></tr>
+<td>'5' is a magic number.</td>
+<td>36</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'0.04' is a magic number.</td>
+<td>'0.03' is a magic number.</td>
 <td>40</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
@@ -795,320 +805,398 @@
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'4' is a magic number.</td>
-<td>43</td></tr>
+<td>'0.04' is a magic number.</td>
+<td>42</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'0.03' is a magic number.</td>
-<td>48</td></tr>
+<td>'4' is a magic number.</td>
+<td>44</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'0.04' is a magic number.</td>
+<td>'0.03' is a magic number.</td>
 <td>49</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'4' is a magic number.</td>
-<td>51</td></tr>
+<td>'0.04' is a magic number.</td>
+<td>50</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'14171' is a magic number.</td>
-<td>54</td></tr>
+<td>'4' is a magic number.</td>
+<td>52</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'495' is a magic number.</td>
+<td>'14171' is a magic number.</td>
 <td>55</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'0.1' is a magic number.</td>
+<td>'495' is a magic number.</td>
 <td>56</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'1759' is a magic number.</td>
-<td>59</td></tr>
+<td>'0.1' is a magic number.</td>
+<td>57</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'1929' is a magic number.</td>
-<td>61</td></tr>
+<td>'1759' is a magic number.</td>
+<td>60</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'3191' is a magic number.</td>
+<td>'1929' is a magic number.</td>
 <td>62</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'873' is a magic number.</td>
-<td>64</td></tr>
+<td>'3191' is a magic number.</td>
+<td>63</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'1444' is a magic number.</td>
+<td>'873' is a magic number.</td>
 <td>65</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'0.4525' is a magic number.</td>
+<td>'1444' is a magic number.</td>
 <td>66</td></tr>
 <tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>coding</td>
+<td>MagicNumber</td>
+<td>'0.4525' is a magic number.</td>
+<td>67</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getRevenuReference' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getRevenuReference' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>104</td></tr>
-<tr class="a">
+<td>105</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getDecote' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getDecote' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>108</td></tr>
-<tr class="b">
+<td>109</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getAbattement' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getAbattement' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>113</td></tr>
-<tr class="a">
+<td>114</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getNbParts' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getNbParts' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>117</td></tr>
-<tr class="b">
+<td>118</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getImpotAvantDecote' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getImpotAvantDecote' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>121</td></tr>
-<tr class="a">
+<td>122</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getImpotNet' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getImpotNet' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>125</td></tr>
-<tr class="b">
+<td>126</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getRevenuNetDeclatant1' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getRevenuNetDeclatant1' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>129</td></tr>
-<tr class="a">
+<td>130</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getRevenuNetDeclatant2' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getRevenuNetDeclatant2' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>133</td></tr>
-<tr class="b">
+<td>134</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
-<td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getContribExceptionnelle' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getContribExceptionnelle' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>137</td></tr>
-<tr class="a">
+<td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getMontantContributionExceptionnelle' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getMontantContributionExceptionnelle' static/final/abstract/empty, or adding allowed annotation for the method.</td>
+<td>138</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 100 characters (found 149).</td>
-<td>144</td></tr>
-<tr class="b">
+<td>145</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'calculImpot' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'calculImpot' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>144</td></tr>
-<tr class="a">
+<td>145</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>metrics</td>
 <td>CyclomaticComplexity</td>
-<td>Cyclomatic Complexity is 52 (max allowed is 15).</td>
-<td>144</td></tr>
-<tr class="b">
+<td>Cyclomatic Complexity is 38 (max allowed is 15).</td>
+<td>145</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>MethodLength</td>
-<td>Method calculImpot length is 286 lines (max allowed is 50).</td>
-<td>144</td></tr>
-<tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 100 characters (found 106).</td>
-<td>156</td></tr>
+<td>Method calculImpot length is 257 lines (max allowed is 50).</td>
+<td>145</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 100 characters (found 128).</td>
-<td>164</td></tr>
+<td>coding</td>
+<td>HiddenField</td>
+<td>'nbEnfants' hides a field.</td>
+<td>145</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
-<td>MagicNumber</td>
-<td>'7' is a magic number.</td>
-<td>167</td></tr>
+<td>HiddenField</td>
+<td>'nbEnfantsHandicapes' hides a field.</td>
+<td>145</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
-<td>Line is longer than 100 characters (found 101).</td>
-<td>168</td></tr>
+<td>Line is longer than 100 characters (found 104).</td>
+<td>147</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
-<td>Line is longer than 100 characters (found 107).</td>
-<td>171</td></tr>
+<td>Line is longer than 100 characters (found 124).</td>
+<td>148</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
-<td>Line is longer than 100 characters (found 141).</td>
-<td>175</td></tr>
+<td>Line is longer than 100 characters (found 130).</td>
+<td>150</td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 100 characters (found 136).</td>
-<td>177</td></tr>
-<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
 <td>'3' is a magic number.</td>
-<td>192</td></tr>
-<tr class="a">
+<td>164</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
 <td>'4' is a magic number.</td>
-<td>193</td></tr>
-<tr class="b">
+<td>165</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
 <td>'5' is a magic number.</td>
-<td>194</td></tr>
-<tr class="a">
+<td>166</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
 <td>'3' is a magic number.</td>
-<td>199</td></tr>
-<tr class="b">
+<td>171</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
 <td>'4' is a magic number.</td>
-<td>200</td></tr>
-<tr class="a">
+<td>172</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
 <td>'3' is a magic number.</td>
-<td>205</td></tr>
-<tr class="b">
+<td>177</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
 <td>'4' is a magic number.</td>
-<td>206</td></tr>
-<tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>coding</td>
-<td>MagicNumber</td>
-<td>'3' is a magic number.</td>
-<td>211</td></tr>
+<td>178</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
 <td>'3' is a magic number.</td>
-<td>216</td></tr>
+<td>183</td></tr>
 <tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>coding</td>
+<td>MagicNumber</td>
+<td>'3' is a magic number.</td>
+<td>188</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MissingSwitchDefault</td>
 <td>switch without &quot;default&quot; clause.</td>
-<td>260</td></tr>
-<tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>coding</td>
-<td>MagicNumber</td>
-<td>'0.5' is a magic number.</td>
-<td>283</td></tr>
+<td>232</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
 <td>'0.5' is a magic number.</td>
+<td>255</td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>coding</td>
+<td>MagicNumber</td>
+<td>'0.5' is a magic number.</td>
+<td>266</td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>coding</td>
+<td>MagicNumber</td>
+<td>'0.5' is a magic number.</td>
+<td>276</td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 100 characters (found 104).</td>
+<td>285</td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 100 characters (found 125).</td>
+<td>287</td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 100 characters (found 120).</td>
+<td>289</td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 100 characters (found 120).</td>
 <td>294</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>coding</td>
-<td>MagicNumber</td>
-<td>'0.5' is a magic number.</td>
-<td>304</td></tr>
-<tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
-<td>Line is longer than 100 characters (found 108).</td>
-<td>322</td></tr>
-<tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 100 characters (found 103).</td>
-<td>324</td></tr>
+<td>Line is longer than 100 characters (found 115).</td>
+<td>296</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
 <td>'5' is a magic number.</td>
-<td>328</td></tr>
+<td>300</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
-<td>Line is longer than 100 characters (found 109).</td>
-<td>331</td></tr>
+<td>Line is longer than 100 characters (found 120).</td>
+<td>303</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
 <td>'5' is a magic number.</td>
-<td>348</td></tr>
+<td>320</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
 <td>'5' is a magic number.</td>
-<td>369</td></tr>
+<td>341</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
 <td>'0.5' is a magic number.</td>
-<td>387</td></tr></table></section></section></section>
+<td>359</td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 100 characters (found 161).</td>
+<td>403</td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>design</td>
+<td>DesignForExtension</td>
+<td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'verifierPreconditions' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'verifierPreconditions' static/final/abstract/empty, or adding allowed annotation for the method.</td>
+<td>403</td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>coding</td>
+<td>HiddenField</td>
+<td>'nbEnfants' hides a field.</td>
+<td>403</td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>coding</td>
+<td>HiddenField</td>
+<td>'nbEnfantsHandicapes' hides a field.</td>
+<td>403</td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 100 characters (found 106).</td>
+<td>413</td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 100 characters (found 128).</td>
+<td>421</td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>coding</td>
+<td>MagicNumber</td>
+<td>'7' is a magic number.</td>
+<td>424</td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 100 characters (found 101).</td>
+<td>425</td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 100 characters (found 107).</td>
+<td>428</td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 100 characters (found 141).</td>
+<td>432</td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 100 characters (found 136).</td>
+<td>434</td></tr></table></section></section></section>
       </div>
     </div>
     <div class="clear">
