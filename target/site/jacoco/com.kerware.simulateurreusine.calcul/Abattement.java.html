@@ -30,14 +30,15 @@ import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 <span class="fc" id="L30">            abt1 = ConstantesFiscales.ABATTEMENT_MIN;</span>
         }
 
-<span class="fc bfc" id="L33" title="All 4 branches covered.">        if ( paramSituationFamilial == SituationFamiliale.MARIE || paramSituationFamilial == SituationFamiliale.PACSE ) {</span>
-<span class="fc bfc" id="L34" title="All 2 branches covered.">            if (abt2 &lt; ConstantesFiscales.ABATTEMENT_MIN) {</span>
-<span class="fc" id="L35">                abt2 = ConstantesFiscales.ABATTEMENT_MIN;</span>
+<span class="fc bfc" id="L33" title="All 4 branches covered.">        if ( paramSituationFamilial == SituationFamiliale.MARIE</span>
+                || paramSituationFamilial == SituationFamiliale.PACSE ) {
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            if (abt2 &lt; ConstantesFiscales.ABATTEMENT_MIN) {</span>
+<span class="fc" id="L36">                abt2 = ConstantesFiscales.ABATTEMENT_MIN;</span>
             }
         }
 
         // double abattementFinal = abt1 + abt2;
-<span class="fc" id="L40">        return abt1 + abt2;</span>
+<span class="fc" id="L41">        return abt1 + abt2;</span>
     }
 
 }

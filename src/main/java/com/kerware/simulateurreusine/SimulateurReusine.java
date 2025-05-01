@@ -2,6 +2,7 @@ package com.kerware.simulateurreusine;
 
 import com.kerware.simulateur.SituationFamiliale;
 import com.kerware.simulateurreusine.calcul.Abattement;
+import com.kerware.simulateurreusine.calcul.Revenu;
 import com.kerware.simulateurreusine.calcul.VerificateurDonneesFiscales;
 import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 
@@ -143,10 +144,7 @@ public class SimulateurReusine {
         this.abattement = Abattement.calculerAbattement(paramSituationFamilial, revenuNetDeclarant1, revenuNetDeclarant2);
         System.out.println( "Abattement : " + abattement);
 
-        revenuFiscalReference = revenuNetDeclarant1 + revenuNetDeclarant2 - abattement;
-        if ( revenuFiscalReference < 0 ) {
-            revenuFiscalReference = 0;
-        }
+        this.revenuFiscalReference = Revenu.calculerRevenuFiscal(revenuNetDeclarant1, revenuNetDeclarant2, this.abattement);
 
         System.out.println( "Revenu fiscal de référence : " + revenuFiscalReference);
 
