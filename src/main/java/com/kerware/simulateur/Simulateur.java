@@ -236,7 +236,7 @@ public class Simulateur {
 
         // Calcul impôt foyer fiscal complet
         // EXIGENCE : EXG_IMPOT_04
-        mImp = impotFoyerFiscal(rImposable, rFRef, nbPts, limites, taux);
+        mImp = impotFoyerFiscal(rFRef, nbPts, limites, taux);
         System.out.println( "Impôt brut du foyer fiscal complet : " + mImp );
 
         // Vérification de la baisse d'impôt autorisée
@@ -272,9 +272,9 @@ public class Simulateur {
         return  mImp;
     }
 
-    public double impotFoyerFiscal(double rImposable, double rFRef, double nbPts, int[] limites, double[] taux) {
-        rImposable =  rFRef / nbPts;
-        mImp = 0;
+    public double impotFoyerFiscal(double rFRef, double nbPts, int[] limites, double[] taux) {
+        double rImposable =  rFRef / nbPts;
+        double mImp = 0;
         int i = 0;
 
         do {
@@ -312,7 +312,7 @@ public class Simulateur {
         return decote;
 }
 
-    private double impotBrutApresPlafonnementAvantDecote(double baisseImpot, double plafond, double mImpDecl) {
+    public double impotBrutApresPlafonnementAvantDecote(double baisseImpot, double plafond, double mImpDecl) {
         if ( baisseImpot >= plafond ) {
             mImp = mImpDecl - plafond;
         }
@@ -417,7 +417,6 @@ public class Simulateur {
     }
 
     public double nombreDePartEnfant(double nbPtsDecl, int nbEnf) {
-
         double nbPts;
         if ( nbEnf <= 2 ) {
             nbPts = nbPtsDecl + nbEnf * 0.5;
