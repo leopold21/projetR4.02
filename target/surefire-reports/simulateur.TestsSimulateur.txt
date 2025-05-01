@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: simulateur.TestsSimulateur
 -------------------------------------------------------------------------------
-Tests run: 42, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.548 s -- in simulateur.TestsSimulateur
+Tests run: 42, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.450 s -- in simulateur.TestsSimulateur

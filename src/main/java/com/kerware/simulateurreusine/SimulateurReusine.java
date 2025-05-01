@@ -1,6 +1,7 @@
 package com.kerware.simulateurreusine;
 
 import com.kerware.simulateur.SituationFamiliale;
+import com.kerware.simulateurreusine.calcul.Abattement;
 import com.kerware.simulateurreusine.calcul.VerificateurDonneesFiscales;
 import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 
@@ -139,29 +140,7 @@ public class SimulateurReusine {
 
         // Abattement
         // EXIGENCE : EXG_IMPOT_02
-        long abt1 = Math.round(revenuNetDeclarant1 * tauxAbattement);
-        long abt2 = Math.round(revenuNetDeclarant2 * tauxAbattement);
-
-        if (abt1 > ConstantesFiscales.ABATTEMENT_MAX) {
-            abt1 = ConstantesFiscales.ABATTEMENT_MAX;
-        }
-        if ( paramSituationFamilial == SituationFamiliale.MARIE || paramSituationFamilial == SituationFamiliale.PACSE ) {
-            if (abt2 > ConstantesFiscales.ABATTEMENT_MAX) {
-                abt2 = ConstantesFiscales.ABATTEMENT_MAX;
-            }
-        }
-
-        if (abt1 < ConstantesFiscales.ABATTEMENT_MIN) {
-            abt1 = ConstantesFiscales.ABATTEMENT_MIN;
-        }
-
-        if ( paramSituationFamilial == SituationFamiliale.MARIE || paramSituationFamilial == SituationFamiliale.PACSE ) {
-            if (abt2 < ConstantesFiscales.ABATTEMENT_MIN) {
-                abt2 = ConstantesFiscales.ABATTEMENT_MIN;
-            }
-        }
-
-        abattement = abt1 + abt2;
+        this.abattement = Abattement.calculerAbattement(paramSituationFamilial, revenuNetDeclarant1, revenuNetDeclarant2);
         System.out.println( "Abattement : " + abattement);
 
         revenuFiscalReference = revenuNetDeclarant1 + revenuNetDeclarant2 - abattement;
