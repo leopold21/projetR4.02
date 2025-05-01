@@ -267,13 +267,10 @@ public class Simulateur {
 
         // dépassement plafond
         double plafond = depassementPlafond(nbPts, nbPtsDecl);
-
-
         System.out.println( "Plafond de baisse autorisée " + plafond );
 
-        if ( baisseImpot >= plafond ) {
-            mImp = mImpDecl - plafond;
-        }
+        mImp = impotBrutApresPlafonnementAvantDecote(baisseImpot, plafond, mImpDecl);
+
 
         System.out.println( "Impôt brut après plafonnement avant decote : " + mImp );
         mImpAvantDecote = mImp;
@@ -311,7 +308,14 @@ public class Simulateur {
         return  (int)mImp;
     }
 
-    private double depassementPlafond(double nbPts, double nbPtsDecl) {
+    private double impotBrutApresPlafonnementAvantDecote(double baisseImpot, double plafond, double mImpDecl) {
+        if ( baisseImpot >= plafond ) {
+            mImp = mImpDecl - plafond;
+        }
+        return mImp;
+    }
+
+    public double depassementPlafond(double nbPts, double nbPtsDecl) {
         double ecartPts = nbPts - nbPtsDecl;
         return (ecartPts / 0.5) * plafDemiPart;
     }
