@@ -3,7 +3,7 @@ package com.kerware.simulateurreusine;
 import com.kerware.simulateur.SituationFamiliale;
 
 // Version réusinée du Simulateur, adaptée pour une meilleure modularité et lisibilité
-public class Simulateur {
+public class SimulateurReusine {
 
 
     // Les limites des tranches de revenus imposables

@@ -1,5 +1,7 @@
 com\kerware\simulateur\ICalculateurImpot.class
-com\kerware\simulateur\Simulateur$1.class
-com\kerware\simulateur\AdaptateurSimulateur.class
+com\kerware\simulateurreusine\SimulateurReusine.class
 com\kerware\simulateur\Simulateur.class
 com\kerware\simulateur\SituationFamiliale.class
+com\kerware\simulateurreusine\SimulateurReusine$1.class
+com\kerware\simulateur\Simulateur$1.class
+com\kerware\simulateur\AdaptateurSimulateur.class

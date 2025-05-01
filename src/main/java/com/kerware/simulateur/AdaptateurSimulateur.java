@@ -1,11 +1,11 @@
 package com.kerware.simulateur;
 
 // Ajout de cette ligne pour pouvoir utiliser le nouveau simulateur que l'on va réusiner petit à petit
-import com.kerware.simulateurreusine.Simulateur;
+import com.kerware.simulateurreusine.SimulateurReusine;
 
 public class AdaptateurSimulateur implements ICalculateurImpot {
 
-    private Simulateur simulateur = new Simulateur();
+    private SimulateurReusine simulateur = new SimulateurReusine();
 
     private int revenusNetDecl1 = 0;
     private int revenusNetDecl2 = 0;

@@ -12,8 +12,6 @@
 
     <property name="severity" value="warning" />
 
-
-
     <module name="LineLength">
         <property name="fileExtensions" value="java"/>
         <property name="max" value="100"/>
