@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConstantesFiscales.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SimulateurImpot2024</a> &gt; <a href="index.source.html" class="el_package">com.kerware.simulateurreusine.outils</a> &gt; <span class="el_source">ConstantesFiscales.java</span></div><h1>ConstantesFiscales.java</h1><pre class="source lang-java linenums">package com.kerware.simulateurreusine.outils;
 
 <span class="nc" id="L3">public class ConstantesFiscales {</span>
+    /*
+    private int limiteTranche0 = 0 ;
+    private int limiteTranche1 = 11294;
+    private int limiteTranche2 = 28797;
+    private int limiteTranche3 = 82341;
+    private int limiteTranche4 = 177106;
+    private int limiteTranche5 = Integer.MAX_VALUE;
 
+    private double tauxTranche0 = 0.0;
+    private double tauxTranche1 = 0.11;
+    private double tauxTranche2 = 0.3;
+    private double tauxTranche3 = 0.41;
+    private double tauxTranche4 = 0.45;
+
+    private int limiteCEHR0 = 0;
+    private int limiteCEHR1 = 250000;
+    private int limiteCEHR2 = 500000;
+    private int limiteCEHR3 = 1000000;
+    private int limiteCEHR4 = Integer.MAX_VALUE;
+
+    private double tauxCEHRCelibataireTranche0 = 0.0;
+    private double tauxCEHRCelibataireTranche1 = 0.03;
+    private double tauxCEHRCelibataireTranche2 = 0.04;
+    private double tauxCEHRCelibataireTranche3 = 0.04;
+
+    private double tauxCEHRCoupleTranche0 = 0.0;
+    private double tauxCEHRCoupleTranche1 = 0.0;
+    private double tauxCEHRCoupleTranche2 = 0.03;
+    private double tauxCEHRCoupleTranche3 = 0.04;
+    */
+
+<span class="fc" id="L35">    public static final int[] TRANCHES = { 0, 11294, 28797, 82341, 177106, Integer.MAX_VALUE };</span>
+<span class="fc" id="L36">    public static final double[] TAUX = { 0.0, 0.11, 0.3, 0.41, 0.45 };</span>
+
+<span class="fc" id="L38">    public static final int[] CEHR = { 0, 250000, 500000, 1000000, Integer.MAX_VALUE };</span>
+<span class="fc" id="L39">    public static final double[] TAUX_CEHR_CELIB = { 0.0, 0.03, 0.04, 0.04 };</span>
+<span class="fc" id="L40">    public static final double[] TAUX_CEHR_COUPLE = { 0.0, 0.0, 0.03, 0.04 };</span>
+
+    public static final int ABATTEMENT_MAX = 14171;
+    public static final int ABATTEMENT_MIN = 495;
+    public static final double TAUX_ABATTEMENT = 0.1;
+
+    public static final double PLAFOND_DEMI_PART = 1759;
+
+    public static final double SEUIL_DECOTE_SEUL = 1929;
+    public static final double SEUIL_DECOTE_COUPLE = 3191;
+    public static final double DECOTE_MAX_SEUL = 873;
+    public static final double DECOTE_MAX_COUPLE = 1444;
+    public static final double TAUX_DECOTE = 0.4525;
+
+    public static final int REVENU_AUTORISE_DECLARANT_2_SI_SEUL = 0;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

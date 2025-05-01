@@ -1,70 +1,12 @@
 package com.kerware.simulateurreusine;
 
 import com.kerware.simulateur.SituationFamiliale;
-import com.kerware.simulateurreusine.calcul.*;
+import com.kerware.simulateurreusine.calcul.VerificateurDonneesFiscales;
+import com.kerware.simulateurreusine.outils.ConstantesFiscales;
+
 
 // Version réusinée du Simulateur, adaptée pour une meilleure modularité et lisibilité
 public class SimulateurReusine {
-
-
-    // Les limites des tranches de revenus imposables
-    private int limiteTranche0 = 0 ;
-    private int limiteTranche1 = 11294;
-    private int limiteTranche2 = 28797;
-    private int limiteTranche3 = 82341;
-    private int limiteTranche4 = 177106;
-    private int limiteTranche5 = Integer.MAX_VALUE;
-
-    private int[] limites = new int[6];
-
-    // Les taux d'imposition par tranche
-    private double tauxTranche0 = 0.0;
-    private double tauxTranche1 = 0.11;
-    private double tauxTranche2 = 0.3;
-    private double tauxTranche3 = 0.41;
-    private double tauxTranche4 = 0.45;
-
-    private double[] taux = new double[5];
-
-    // Les limites des tranches pour la contribution exceptionnelle sur les hauts revenus
-    private int limiteCEHR0 = 0;
-    private int limiteCEHR1 = 250000;
-    private int limiteCEHR2 = 500000;
-    private int limiteCEHR3 = 1000000;
-    private int limiteCEHR4 = Integer.MAX_VALUE;
-
-    private int[] limitesCEHR = new int[5];
-
-    // Les taux de la contribution exceptionnelle sur les hauts revenus (CEHR) pour les celibataires
-    private double tauxCEHRCelibataireTranche0 = 0.0;
-    private double tauxCEHRCelibataireTranche1 = 0.03;
-    private double tauxCEHRCelibataireTranche2 = 0.04;
-    private double tauxCEHRCelibataireTranche3 = 0.04;
-
-    private double[] tauxCEHRCelibataire = new double[4];
-
-    // Les taux de la contribution exceptionnelle sur les hauts revenus pour les couples
-    private double tauxCEHRCoupleTranche0 = 0.0;
-    private double tauxCEHRCoupleTranche1 = 0.0;
-    private double tauxCEHRCoupleTranche2 = 0.03;
-    private double tauxCEHRCoupleTranche3 = 0.04;
-
-    private double[] tauxCEHRCouple = new double[4];
-
-    // Abattement
-    private  int limiteAbattementMaxParDeclarant = 14171;
-    private  int limiteAbattementMinParDeclarant = 495;
-    private double tauxAbattement = 0.1;
-
-    // Plafond de baisse maximal par demi part
-    private double plafDemiPart = 1759;
-
-    private double seuilDecoteDeclarantSeul = 1929;
-    private double seuilDecoteDeclarantCouple    = 3191;
-
-    private double decoteMaxDeclarantSeul = 873;
-    private double decoteMaxDeclarantCouple = 1444;
-    private double tauxDecote = 0.4525;
 
     // revenu net
     private int revenuNetDeclarant1 = 0;
@@ -142,84 +84,87 @@ public class SimulateurReusine {
 
     // Fonction de calcul de l'impôt sur le revenu net en France en 2024 sur les revenu 2023
 
-    public int calculImpot(int revNetDecl1, int revNetDecl2, SituationFamiliale sitFam, int nbEnfants, int nbEnfantsHandicapes, boolean parentIsol) {
+    public int calculImpot(
+            int paramRevenuNetDeclarant1,
+            int paramRevenuNetDeclarant2,
+            SituationFamiliale paramSituationFamilial,
+            int paramNbEnfants,
+            int paramNbEnfantsHandicapes,
+            boolean paramEstParentIsol
+    ) {
 
 //        VerificateurDonneesFiscales verificateurDonnees = new VerificateurDonneesFiscales(0, 0, 0, 0);
-//        verificateurDonnees.verifierDonnees(revNetDecl1, revNetDecl2, sitFam, nbEnfants, nbEnfantsHandicapes, parentIsol);
+//        verificateurDonnees.verifierDonnees(revNetDecl1, revNetDecl2, paramSituationFamilial, nbEnfants, nbEnfantsHandicapes, parentIsol);
 
-        VerificateurDonneesFiscales.verifierDonnees(revNetDecl1, revNetDecl2, sitFam, nbEnfants, nbEnfantsHandicapes, parentIsol);
+        VerificateurDonneesFiscales.verifierDonnees(
+                paramRevenuNetDeclarant1,
+                paramRevenuNetDeclarant2,
+                paramSituationFamilial,
+                paramNbEnfants,
+                paramNbEnfantsHandicapes,
+                paramEstParentIsol
+        );
 
         // Initialisation des variables
+        revenuNetDeclarant1 = paramRevenuNetDeclarant1;
+        revenuNetDeclarant2 = paramRevenuNetDeclarant2;
 
-        revenuNetDeclarant1 = revNetDecl1;
-        revenuNetDeclarant2 = revNetDecl2;
+        this.nbEnfants = paramNbEnfants;
+        this.nbEnfantsHandicapes = paramNbEnfantsHandicapes;
+        estParentIsole = paramEstParentIsol;
 
-        this.nbEnfants = nbEnfants;
-        this.nbEnfantsHandicapes = nbEnfantsHandicapes;
-        estParentIsole = parentIsol;
+        int[] limites = ConstantesFiscales.TRANCHES;
+        double[] taux = ConstantesFiscales.TAUX;
 
-        limites[0] = limiteTranche0;
-        limites[1] = limiteTranche1;
-        limites[2] = limiteTranche2;
-        limites[3] = limiteTranche3;
-        limites[4] = limiteTranche4;
-        limites[5] = limiteTranche5;
+        int[] limitesCEHR = ConstantesFiscales.CEHR;
+        double[] tauxCelib = ConstantesFiscales.TAUX_CEHR_CELIB;
+        double[] tauxCouple = ConstantesFiscales.TAUX_CEHR_COUPLE;
 
-        taux[0] = tauxTranche0;
-        taux[1] = tauxTranche1;
-        taux[2] = tauxTranche2;
-        taux[3] = tauxTranche3;
-        taux[4] = tauxTranche4;
+        double tauxAbattement = ConstantesFiscales.TAUX_ABATTEMENT;
+        int abattementMax = ConstantesFiscales.ABATTEMENT_MAX;
+        int abattementMin = ConstantesFiscales.ABATTEMENT_MIN;
 
-        limitesCEHR[0] = limiteCEHR0;
-        limitesCEHR[1] = limiteCEHR1;
-        limitesCEHR[2] = limiteCEHR2;
-        limitesCEHR[3] = limiteCEHR3;
-        limitesCEHR[4] = limiteCEHR4;
+        double plafondDemiPart = ConstantesFiscales.PLAFOND_DEMI_PART;
 
-        tauxCEHRCelibataire[0] = tauxCEHRCelibataireTranche0;
-        tauxCEHRCelibataire[1] = tauxCEHRCelibataireTranche1;
-        tauxCEHRCelibataire[2] = tauxCEHRCelibataireTranche2;
-        tauxCEHRCelibataire[3] = tauxCEHRCelibataireTranche3;
-
-        tauxCEHRCouple[0] = tauxCEHRCoupleTranche0;
-        tauxCEHRCouple[1] = tauxCEHRCoupleTranche1;
-        tauxCEHRCouple[2] = tauxCEHRCoupleTranche2;
-        tauxCEHRCouple[3] = tauxCEHRCoupleTranche3;
+        double seuilSeul = ConstantesFiscales.SEUIL_DECOTE_SEUL;
+        double seuilCouple = ConstantesFiscales.SEUIL_DECOTE_COUPLE;
+        double decoteMaxSeul = ConstantesFiscales.DECOTE_MAX_SEUL;
+        double decoteMaxCouple = ConstantesFiscales.DECOTE_MAX_COUPLE;
+        double tauxDecote = ConstantesFiscales.TAUX_DECOTE;
 
         System.out.println("--------------------------------------------------");
         System.out.println( "Revenu net declarant1 : " + revenuNetDeclarant1);
         System.out.println( "Revenu net declarant2 : " + revenuNetDeclarant2);
-        System.out.println( "Situation familiale : " + sitFam.name() );
+        System.out.println( "Situation familiale : " + paramSituationFamilial.name() );
 
         // Abattement
         // EXIGENCE : EXG_IMPOT_02
         long abt1 = Math.round(revenuNetDeclarant1 * tauxAbattement);
         long abt2 = Math.round(revenuNetDeclarant2 * tauxAbattement);
 
-        if (abt1 > limiteAbattementMaxParDeclarant) {
-            abt1 = limiteAbattementMaxParDeclarant;
+        if (abt1 > ConstantesFiscales.ABATTEMENT_MAX) {
+            abt1 = ConstantesFiscales.ABATTEMENT_MAX;
         }
-        if ( sitFam == SituationFamiliale.MARIE || sitFam == SituationFamiliale.PACSE ) {
-            if (abt2 > limiteAbattementMaxParDeclarant) {
-                abt2 = limiteAbattementMaxParDeclarant;
+        if ( paramSituationFamilial == SituationFamiliale.MARIE || paramSituationFamilial == SituationFamiliale.PACSE ) {
+            if (abt2 > ConstantesFiscales.ABATTEMENT_MAX) {
+                abt2 = ConstantesFiscales.ABATTEMENT_MAX;
             }
         }
 
-        if (abt1 < limiteAbattementMinParDeclarant) {
-            abt1 = limiteAbattementMinParDeclarant;
+        if (abt1 < ConstantesFiscales.ABATTEMENT_MIN) {
+            abt1 = ConstantesFiscales.ABATTEMENT_MIN;
         }
 
-        if ( sitFam == SituationFamiliale.MARIE || sitFam == SituationFamiliale.PACSE ) {
-            if (abt2 < limiteAbattementMinParDeclarant) {
-                abt2 = limiteAbattementMinParDeclarant;
+        if ( paramSituationFamilial == SituationFamiliale.MARIE || paramSituationFamilial == SituationFamiliale.PACSE ) {
+            if (abt2 < ConstantesFiscales.ABATTEMENT_MIN) {
+                abt2 = ConstantesFiscales.ABATTEMENT_MIN;
             }
         }
 
         abattement = abt1 + abt2;
         System.out.println( "Abattement : " + abattement);
 
-        revenuFiscalReference = revenuNetDeclarant1 + revNetDecl2 - abattement;
+        revenuFiscalReference = revenuNetDeclarant1 + revenuNetDeclarant2 - abattement;
         if ( revenuFiscalReference < 0 ) {
             revenuFiscalReference = 0;
         }
@@ -229,7 +174,7 @@ public class SimulateurReusine {
 
         // parts déclarants
         // EXIG  : EXG_IMPOT_03
-        switch ( sitFam ) {
+        switch ( paramSituationFamilial ) {
             case CELIBATAIRE:
                 nbPartsDeclarants = 1;
                 break;
@@ -268,7 +213,7 @@ public class SimulateurReusine {
         }
 
         // Veuf avec enfant
-        if ( sitFam == SituationFamiliale.VEUF && this.nbEnfants > 0 ) {
+        if ( paramSituationFamilial == SituationFamiliale.VEUF && this.nbEnfants > 0 ) {
             nbPartsFoyer = nbPartsFoyer + 1;
         }
 
@@ -284,16 +229,16 @@ public class SimulateurReusine {
         do {
             if ( revenuFiscalReference >= limitesCEHR[i] && revenuFiscalReference < limitesCEHR[i+1] ) {
                 if ( nbPartsDeclarants == 1 ) {
-                    montantContributionExceptionnelle += ( revenuFiscalReference - limitesCEHR[i] ) * tauxCEHRCelibataire[i];
+                    montantContributionExceptionnelle += ( revenuFiscalReference - limitesCEHR[i] ) * ConstantesFiscales.TAUX_CEHR_CELIB[i];
                 } else {
-                    montantContributionExceptionnelle += ( revenuFiscalReference - limitesCEHR[i] ) * tauxCEHRCouple[i];
+                    montantContributionExceptionnelle += ( revenuFiscalReference - limitesCEHR[i] ) * ConstantesFiscales.TAUX_CEHR_COUPLE[i];
                 }
                 break;
             } else {
                 if ( nbPartsDeclarants == 1 ) {
-                    montantContributionExceptionnelle += ( limitesCEHR[i+1] - limitesCEHR[i] ) * tauxCEHRCelibataire[i];
+                    montantContributionExceptionnelle += ( limitesCEHR[i+1] - limitesCEHR[i] ) * ConstantesFiscales.TAUX_CEHR_CELIB[i];
                 } else {
-                    montantContributionExceptionnelle += ( limitesCEHR[i+1] - limitesCEHR[i] ) * tauxCEHRCouple[i];
+                    montantContributionExceptionnelle += ( limitesCEHR[i+1] - limitesCEHR[i] ) * ConstantesFiscales.TAUX_CEHR_COUPLE[i];
                 }
             }
             i++;
@@ -356,7 +301,7 @@ public class SimulateurReusine {
         // dépassement plafond
         double ecartPts = nbPartsFoyer - nbPartsDeclarants;
 
-        double plafond = (ecartPts / 0.5) * plafDemiPart;
+        double plafond = (ecartPts / 0.5) * ConstantesFiscales.PLAFOND_DEMI_PART;
 
         System.out.println( "Plafond de baisse autorisée " + plafond );
 
@@ -373,13 +318,13 @@ public class SimulateurReusine {
         decote = 0;
         // decote
         if ( nbPartsDeclarants == 1 ) {
-            if ( montantImpotFoyer < seuilDecoteDeclarantSeul ) {
-                decote = decoteMaxDeclarantSeul - ( montantImpotFoyer * tauxDecote );
+            if ( montantImpotFoyer < ConstantesFiscales.SEUIL_DECOTE_SEUL ) {
+                decote = ConstantesFiscales.DECOTE_MAX_SEUL - ( montantImpotFoyer * tauxDecote );
             }
         }
         if (  nbPartsDeclarants == 2 ) {
-            if ( montantImpotFoyer < seuilDecoteDeclarantCouple ) {
-                decote =  decoteMaxDeclarantCouple - ( montantImpotFoyer * tauxDecote  );
+            if ( montantImpotFoyer < ConstantesFiscales.SEUIL_DECOTE_COUPLE ) {
+                decote =  ConstantesFiscales.DECOTE_MAX_COUPLE - ( montantImpotFoyer * tauxDecote  );
             }
         }
         decote = Math.round( decote );
@@ -399,42 +344,5 @@ public class SimulateurReusine {
         System.out.println( "Impôt sur le revenu net final : " + montantImpotFoyer);
         return  (int) montantImpotFoyer;
     }
-
-    public void verifierPreconditions(int revNetDecl1, int revNetDecl2, SituationFamiliale sitFam, int nbEnfants, int nbEnfantsHandicapes, boolean parentIsol)  {
-        if ( revNetDecl1  < 0 || revNetDecl2 < 0 ) {
-            throw new IllegalArgumentException("Le revenu net ne peut pas être négatif");
-        }
-
-        if ( nbEnfants < 0 ) {
-            throw new IllegalArgumentException("Le nombre d'enfants ne peut pas être négatif");
-        }
-
-        if ( nbEnfantsHandicapes < 0 ) {
-            throw new IllegalArgumentException("Le nombre d'enfants handicapés ne peut pas être négatif");
-        }
-
-        if ( sitFam == null ) {
-            throw new IllegalArgumentException("La situation familiale ne peut pas être null");
-        }
-
-        if ( nbEnfantsHandicapes > nbEnfants ) {
-            throw new IllegalArgumentException("Le nombre d'enfants handicapés ne peut pas être supérieur au nombre d'enfants");
-        }
-
-        if ( nbEnfants > 7 ) {
-            throw new IllegalArgumentException("Le nombre d'enfants ne peut pas être supérieur à 7");
-        }
-
-        if ( parentIsol && ( sitFam == SituationFamiliale.MARIE || sitFam == SituationFamiliale.PACSE ) ) {
-            throw new IllegalArgumentException("Un parent isolé ne peut pas être marié ou pacsé");
-        }
-
-        boolean seul = sitFam == SituationFamiliale.CELIBATAIRE || sitFam == SituationFamiliale.DIVORCE || sitFam == SituationFamiliale.VEUF;
-        if (  seul && revNetDecl2 > 0 ) {
-            throw new IllegalArgumentException("Un célibataire, un divorcé ou un veuf ne peut pas avoir de revenu pour le déclarant 2");
-        }
-    }
-
-
 
 }
