@@ -9,7 +9,7 @@
  * @param nbEnfantsHandicapes among children, those with disabilities
  * @param parentIsol whether or not the parent is single
  *
- * @return 
+ * @return Amount of income tax calculated for the tax household
  */
 public int calculImpot(int revNetDecl1, int revNetDecl2, SituationFamiliale sitFam, int nbEnfants, int nbEnfantsHandicapes, boolean parentIsol)
 
@@ -29,7 +29,7 @@ public void verifierPreconditions(int revNetDecl1, int revNetDecl2, SituationFam
 /**
  * ...
  * 
- * @return
+ * @return amount of discount applicable to the gross tax of the tax household
  */
 public double getDecote()
 
@@ -44,7 +44,7 @@ public double getDecote()
  * @param seuilDecoteDeclarantCouple gross tax amount above which a couple can benefit from a discount
  * @param decoteMaxDeclarantCouple maximum amount of discount that a couple can obtain
  * 
- * @return 
+ * @return amount of discount applicable to the gross tax of the tax household.
  */
 public double calculDecote(double nbPtsDecl, double mImp, double seuilDecoteDeclarantSeul, double decoteMaxDeclarantSeul, double tauxDecote, double seuilDecoteDeclarantCouple, double decoteMaxDeclarantCouple)
 
@@ -52,21 +52,21 @@ public double calculDecote(double nbPtsDecl, double mImp, double seuilDecoteDecl
 /**
  * ...
  * 
- * @return 
+ * @return household reference tax income
  */
 public double getRevenuReference()
 
 /**
  * ...
  * 
- * @return
+ * @return net income declared by the first tax filer in the tax household
  */
 public int getRevenuNetDeclarant1()
 
 /**
  * ... 
  * 
- * @return 
+ * @return net income declared by the second tax filer in the tax household
  */
 public int getRevenuNetDeclarant2()
 
@@ -77,7 +77,7 @@ public int getRevenuNetDeclarant2()
  * @param rNetDecl2 net income declared by the second person in the tax household
  * @param abt deduction from total household income
  * 
- * @return 
+ * @return revenu fiscal de référence du foyer
  */
 public double revenuFiscal(int rNetDecl1, int rNetDecl2, double abt)
 
@@ -85,7 +85,7 @@ public double revenuFiscal(int rNetDecl1, int rNetDecl2, double abt)
 /**
  * ...
  * 
- * @return
+ * @return number of household tax units
  */
 public double getNbPart(): 
 
@@ -98,7 +98,7 @@ public double getNbPart():
  * @param parIso whether or not the parent is single
  * @param sitFam marital status (single, civil partnership, married, divorced or widowed)
  * 
- * @return
+ * @return total number of household tax units
  */
 public double nombreDePart(double nbPtsDecl, int nbEnf, int nbEnfH, boolean parIso, SituationFamiliale sitFam)
 
@@ -107,7 +107,7 @@ public double nombreDePart(double nbPtsDecl, int nbEnf, int nbEnfH, boolean parI
  * 
  * @param nbEnfH among children, those with disabilities
  * 
- * @return 
+ * @return number of additional tax units attributed to disabled children in the household
  */
 public double nombreDePartEnfantHandicape(int nbEnfH)
 
@@ -118,6 +118,7 @@ public double nombreDePartEnfantHandicape(int nbEnfH)
  * @param nbEnf number of children in the family
  * 
  * @return 
+number of additional tax units allocated to a widowed taxpayer with dependent children
  */
 public double nombreDePartVeufAvecEnfant(SituationFamiliale sitFam, int nbEnf)
 
@@ -126,7 +127,7 @@ public double nombreDePartVeufAvecEnfant(SituationFamiliale sitFam, int nbEnf)
  * 
  * @param parIso whether or not the parent is single
  * 
- * @return 
+ * @return number of additional tax units allocated to a single parent
  */
 public double nombreDePartParentIsole(boolean parIso)
 
@@ -136,7 +137,7 @@ public double nombreDePartParentIsole(boolean parIso)
  * @param nbPtsDecl number of shares declared
  * @param nbEnf number of children in the family
  * 
- * @return 
+ * @return number of additional tax units allocated
  */
 public double nombreDePartEnfant(double nbPtsDecl, int nbEnf)
 
@@ -144,14 +145,14 @@ public double nombreDePartEnfant(double nbPtsDecl, int nbEnf)
 /**
  * ...
  * 
- * @return
+ * @return amount of income tax before application of the discount
  */
 public double getImpotAvantDecote()
 
 /**
  * ...
  * 
- * @return
+ * @return net tax payable
  */
 public double getImpotNet()
 
@@ -172,7 +173,7 @@ public double impotRevenuNetFinal(double decote, double nImp, double contribExce
  * @param limites taxable income bracket limits
  * @param taux tax rates by bracket
  * 
- * @return 
+ * @return amount of tax to be paid by the tax household
  */
 public double impotFoyerFiscal(double rFRef, double nbPts, int[6] limites, double taux)
 
@@ -183,7 +184,7 @@ public double impotFoyerFiscal(double rFRef, double nbPts, int[6] limites, doubl
  * @param plafond ceiling above which tax cannot be further reduced
  * @param mImpDecl gross tax declared for the entire tax household
  * 
- * @return
+ * @return gross tax after capping but before deduction
  */
 public double impotBrutApresPlafonnementAvantDecote(double baisseImpot, double plafond, double mImpDecl)
 
@@ -200,7 +201,7 @@ public double impotDeclarant(double rFRef, double nbPtsDecl, int[6] limites)
 /**
  * ...
  * 
- * @return 
+ * @return amount of allowance
  */
 public double getAbattement()
 
