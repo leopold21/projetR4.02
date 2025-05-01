@@ -232,15 +232,50 @@ public class Simulateur {
         // EXIGENCE : EXG_IMPOT_04
 
         mImpDecl = impotDeclarant(rFRef, nbPtsDecl, limites);
-
-
         System.out.println( "Impôt brut des déclarants : " + mImpDecl );
 
         // Calcul impôt foyer fiscal complet
         // EXIGENCE : EXG_IMPOT_04
+        mImp = impotFoyerFiscal(rImposable, rFRef, nbPts, limites, taux);
+        System.out.println( "Impôt brut du foyer fiscal complet : " + mImp );
+
+        // Vérification de la baisse d'impôt autorisée
+        // EXIGENCE : EXG_IMPOT_05
+        // baisse impot
+
+        double baisseImpot = mImpDecl - mImp;
+        System.out.println( "Baisse d'impôt : " + baisseImpot );
+
+        // dépassement plafond
+        double plafond = depassementPlafond(nbPts, nbPtsDecl);
+        System.out.println( "Plafond de baisse autorisée " + plafond );
+
+        mImp = impotBrutApresPlafonnementAvantDecote(baisseImpot, plafond, mImpDecl);
+        System.out.println( "Impôt brut après plafonnement avant decote : " + mImp );
+        mImpAvantDecote = mImp;
+
+        // Calcul de la decote
+        // EXIGENCE : EXG_IMPOT_06
+        // decote
+        decote = decote(nbPtsDecl, mImp, seuilDecoteDeclarantSeul, decoteMaxDeclarantSeul, tauxDecote, seuilDecoteDeclarantCouple, decoteMaxDeclarantCouple);
+        System.out.println( "Decote : " + decote );
+
+        mImp = impotRevenuNetFinal(decote, mImp, contribExceptionnelle);
+        System.out.println( "Impôt sur le revenu net final : " + mImp );
+        return  (int)mImp;
+    }
+
+    public double impotRevenuNetFinal(double decote, double mImp, double contribExceptionnelle) {
+        mImp = mImp - decote;
+        mImp += contribExceptionnelle;
+        mImp = Math.round( mImp );
+        return  mImp;
+    }
+
+    public double impotFoyerFiscal(double rImposable, double rFRef, double nbPts, int[] limites, double[] taux) {
         rImposable =  rFRef / nbPts;
         mImp = 0;
-       int i = 0;
+        int i = 0;
 
         do {
             if ( rImposable >= limites[i] && rImposable < limites[i+1] ) {
@@ -254,41 +289,7 @@ public class Simulateur {
 
         mImp = mImp * nbPts;
         mImp = Math.round( mImp );
-
-        System.out.println( "Impôt brut du foyer fiscal complet : " + mImp );
-
-        // Vérification de la baisse d'impôt autorisée
-        // EXIGENCE : EXG_IMPOT_05
-        // baisse impot
-
-        double baisseImpot = mImpDecl - mImp;
-
-        System.out.println( "Baisse d'impôt : " + baisseImpot );
-
-        // dépassement plafond
-        double plafond = depassementPlafond(nbPts, nbPtsDecl);
-        System.out.println( "Plafond de baisse autorisée " + plafond );
-
-        mImp = impotBrutApresPlafonnementAvantDecote(baisseImpot, plafond, mImpDecl);
-        System.out.println( "Impôt brut après plafonnement avant decote : " + mImp );
-        mImpAvantDecote = mImp;
-
-        // Calcul de la decote
-        // EXIGENCE : EXG_IMPOT_06
-
-
-        // decote
-        decote = decote(nbPtsDecl, mImp, seuilDecoteDeclarantSeul, decoteMaxDeclarantSeul, tauxDecote, seuilDecoteDeclarantCouple, decoteMaxDeclarantCouple);
-        System.out.println( "Decote : " + decote );
-
-        mImp = mImp - decote;
-
-        mImp += contribExceptionnelle;
-
-        mImp = Math.round( mImp );
-
-        System.out.println( "Impôt sur le revenu net final : " + mImp );
-        return  (int)mImp;
+        return mImp;
     }
 
     public double decote(double nbPtsDecl, double mImp, double seuilDecoteDeclarantSeul, double decoteMaxDeclarantSeul, double tauxDecote, double seuilDecoteDeclarantCouple, double decoteMaxDeclarantCouple) {
