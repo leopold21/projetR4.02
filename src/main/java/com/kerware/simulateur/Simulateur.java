@@ -208,11 +208,11 @@ public class Simulateur {
 
 
         //calcul de l'abattement
-        abt = calculAbattement(sitFam, revNetDecl1, revNetDecl2, tAbt);
+        abt = abattement(sitFam, revNetDecl1, revNetDecl2, tAbt);
         System.out.println("Abattement: " + abt);
 
         //calcul du revenu fiscal
-        rFRef = calculRevenuFiscal(revNetDecl1, revNetDecl2, abt);
+        rFRef = revenuFiscal(revNetDecl1, revNetDecl2, abt);
         System.out.println( "Revenu fiscal de référence : " + rFRef );
 
 
@@ -231,7 +231,7 @@ public class Simulateur {
         // Calcul impôt des declarants
         // EXIGENCE : EXG_IMPOT_04
 
-        mImpDecl = calculImpotDeclarant(rFRef, nbPtsDecl, limites);
+        mImpDecl = impotDeclarant(rFRef, nbPtsDecl, limites);
 
 
         System.out.println( "Impôt brut des déclarants : " + mImpDecl );
@@ -270,32 +270,15 @@ public class Simulateur {
         System.out.println( "Plafond de baisse autorisée " + plafond );
 
         mImp = impotBrutApresPlafonnementAvantDecote(baisseImpot, plafond, mImpDecl);
-
-
         System.out.println( "Impôt brut après plafonnement avant decote : " + mImp );
         mImpAvantDecote = mImp;
 
         // Calcul de la decote
         // EXIGENCE : EXG_IMPOT_06
 
-        decote = 0;
+
         // decote
-        if ( nbPtsDecl == 1 ) {
-            if ( mImp < seuilDecoteDeclarantSeul ) {
-                 decote = decoteMaxDeclarantSeul - ( mImp  * tauxDecote );
-            }
-        }
-        if (  nbPtsDecl == 2 ) {
-            if ( mImp < seuilDecoteDeclarantCouple ) {
-                 decote =  decoteMaxDeclarantCouple - ( mImp  * tauxDecote  );
-            }
-        }
-        decote = Math.round( decote );
-
-        if ( mImp <= decote ) {
-            decote = mImp;
-        }
-
+        decote = decote(nbPtsDecl, mImp, seuilDecoteDeclarantSeul, decoteMaxDeclarantSeul, tauxDecote, seuilDecoteDeclarantCouple, decoteMaxDeclarantCouple);
         System.out.println( "Decote : " + decote );
 
         mImp = mImp - decote;
@@ -307,6 +290,26 @@ public class Simulateur {
         System.out.println( "Impôt sur le revenu net final : " + mImp );
         return  (int)mImp;
     }
+
+    public double decote(double nbPtsDecl, double mImp, double seuilDecoteDeclarantSeul, double decoteMaxDeclarantSeul, double tauxDecote, double seuilDecoteDeclarantCouple, double decoteMaxDeclarantCouple) {
+        double decote = 0;
+        if ( nbPtsDecl == 1 ) {
+            if ( mImp < seuilDecoteDeclarantSeul ) {
+                decote = decoteMaxDeclarantSeul - ( mImp  * tauxDecote );
+            }
+        }
+        if (  nbPtsDecl == 2 ) {
+            if ( mImp < seuilDecoteDeclarantCouple ) {
+                decote =  decoteMaxDeclarantCouple - ( mImp  * tauxDecote  );
+            }
+        }
+        decote = Math.round( decote );
+
+        if ( mImp <= decote ) {
+            decote = mImp;
+        }
+        return decote;
+}
 
     private double impotBrutApresPlafonnementAvantDecote(double baisseImpot, double plafond, double mImpDecl) {
         if ( baisseImpot >= plafond ) {
@@ -320,7 +323,7 @@ public class Simulateur {
         return (ecartPts / 0.5) * plafDemiPart;
     }
 
-    public double calculImpotDeclarant( double rFRef, double nbPtsDecl, int[] limites) {
+    public double impotDeclarant( double rFRef, double nbPtsDecl, int[] limites) {
         double mImpDecl = 0;
         double rImposable = rFRef / nbPtsDecl ;
         int i = 0;
@@ -423,7 +426,7 @@ public class Simulateur {
         return nbPts;
     }
 
-    public double calculRevenuFiscal(int rNetDecl1, int revNetDecl2, double abt) {
+    public double revenuFiscal(int rNetDecl1, int revNetDecl2, double abt) {
         rFRef = rNetDecl1 + revNetDecl2 - abt;
         if ( rFRef < 0 ) {
             rFRef = 0;
@@ -431,7 +434,7 @@ public class Simulateur {
         return rFRef;
     }
 
-    public double calculAbattement(SituationFamiliale situationFamiliale, double rNetDecl1, double rNetDecl2, double tAbt) {
+    public double abattement(SituationFamiliale situationFamiliale, double rNetDecl1, double rNetDecl2, double tAbt) {
         long abt1 = Math.round(rNetDecl1 * tAbt);
         long abt2 = Math.round(rNetDecl2 * tAbt);
         if (abt1 > lAbtMax) {
