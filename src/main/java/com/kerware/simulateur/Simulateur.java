@@ -266,9 +266,8 @@ public class Simulateur {
         System.out.println( "Baisse d'impôt : " + baisseImpot );
 
         // dépassement plafond
-        double ecartPts = nbPts - nbPtsDecl;
+        double plafond = depassementPlafond(nbPts, nbPtsDecl);
 
-        double plafond = (ecartPts / 0.5) * plafDemiPart;
 
         System.out.println( "Plafond de baisse autorisée " + plafond );
 
@@ -310,6 +309,11 @@ public class Simulateur {
 
         System.out.println( "Impôt sur le revenu net final : " + mImp );
         return  (int)mImp;
+    }
+
+    private double depassementPlafond(double nbPts, double nbPtsDecl) {
+        double ecartPts = nbPts - nbPtsDecl;
+        return (ecartPts / 0.5) * plafDemiPart;
     }
 
     public double calculImpotDeclarant( double rFRef, double nbPtsDecl, int[] limites) {
