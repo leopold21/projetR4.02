@@ -77,9 +77,10 @@ public int getRevenuNetDeclarant2()
  * @param rNetDecl2 net income declared by the second person in the tax household
  * @param abt deduction from total household income
  * 
- * @return revenu fiscal de référence du foyer
+ * @return household reference tax income
  */
 public double revenuFiscal(int rNetDecl1, int rNetDecl2, double abt)
+//fait
 
 //NombreDePart
 /**
@@ -214,3 +215,4 @@ public double getAbattement()
  * @param tAbt deduction rate applied to taxable income
  */
 public double calculAbattement(SituationFamiliale situationFamiliale, double rNetDecl1, double rNetDecl2, double tAbt)
+//fait

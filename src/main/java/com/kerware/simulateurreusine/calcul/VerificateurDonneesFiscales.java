@@ -11,6 +11,16 @@ public class VerificateurDonneesFiscales {
     private static final int NB_ENF_HANDICAPES_MIN = 0;
     private static final int REVENU_AUTORISE_DECLARANT2_SI_SEUL = 0;
 
+    /**
+     *  Checks the validity of the data provided for calculating tax allowances.
+     *  This method lifts an exception if one of the validity conditions is not met.
+     *
+     * @param revenuNetDeclarant1 net income declared by the first person
+     * @param revenuNetDeclarant2 net income declared by the second person
+     * @param nbEnfants number of children in the family
+     * @param nbEnfantsHandicapes among children, those with disabilities
+     * @param estparentIsole whether the parent is single
+     */
     public static void verifierDonnees(
             int revenuNetDeclarant1,
             int revenuNetDeclarant2,

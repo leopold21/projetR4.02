@@ -86,6 +86,18 @@ public class SimulateurReusine {
 
     // Fonction de calcul de l'impôt sur le revenu net en France en 2024 sur les revenu 2023
 
+    /**
+     * ...
+     *
+     * @param paramRevenuNetDeclarant1 net income declared by the first person
+     * @param paramRevenuNetDeclarant2 net income declared by the second person
+     * @param paramSituationFamilial marital status (single, civil partnership, married, divorced or widowed)
+     * @param paramNbEnfants number of children in the family
+     * @param paramNbEnfantsHandicapes among children, those with disabilities
+     * @param paramEstParentIsol whether or not the parent is single
+     *
+     * @return Amount of income tax calculated for the tax household
+     */
     public int calculImpot(
             int paramRevenuNetDeclarant1,
             int paramRevenuNetDeclarant2,
