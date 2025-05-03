@@ -25,7 +25,7 @@
     </div>
     <div id="breadcrumbs">
       <div class="xleft">
-        <span id="publishDate">Last Published: 2025-05-01</span>
+        <span id="publishDate">Last Published: 2025-05-03</span>
           &#xA0;| <span id="projectVersion">Version: 1.0-SNAPSHOT</span>
       </div>
       <div class="xright"><a href="${project.url}" title="SimulateurImpot2024">SimulateurImpot2024</a>      </div>
@@ -66,7 +66,7 @@
 <tr class="b">
 <td>13</td>
 <td>0</td>
-<td>117</td>
+<td>113</td>
 <td>0</td></tr></table></section><section><a name="Files"></a>
 <h3><a name="Files"></a>Files</h3>
 <table border="0" class="bodyTable">
@@ -88,7 +88,7 @@
 <tr class="b">
 <td><a href="#com.2Fkerware.2Fsimulateurreusine.2FSimulateurReusine.java">com/kerware/simulateurreusine/SimulateurReusine.java</a></td>
 <td>0</td>
-<td>31</td>
+<td>27</td>
 <td>0</td></tr></table></section><section><a name="Rules"></a>
 <h3><a name="Rules"></a>Rules</h3>
 <table border="0" class="bodyTable">
@@ -100,12 +100,12 @@
 <tr class="b">
 <td>coding</td>
 <td><a class="externalLink" href="https://checkstyle.org/checks/coding/magicnumber.html">MagicNumber</a></td>
-<td>54</td>
+<td>50</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
 <tr class="a">
 <td></td>
 <td><a class="externalLink" href="https://checkstyle.org/checks/coding/missingswitchdefault.html">MissingSwitchDefault</a></td>
-<td>2</td>
+<td>1</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
 <tr class="b">
 <td>design</td>
@@ -113,22 +113,27 @@
 <td>36</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
 <tr class="a">
+<td>imports</td>
+<td><a class="externalLink" href="https://checkstyle.org/checks/imports/avoidstarimport.html">AvoidStarImport</a></td>
+<td>1</td>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
+<tr class="b">
 <td>metrics</td>
 <td><a class="externalLink" href="https://checkstyle.org/checks/metrics/cyclomaticcomplexity.html">CyclomaticComplexity</a>
 <ul>
 <li>max: <code>&quot;15&quot;</code></li></ul></td>
-<td>2</td>
+<td>1</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
-<tr class="b">
+<tr class="a">
 <td>sizes</td>
 <td><a class="externalLink" href="https://checkstyle.org/checks/sizes/linelength.html">LineLength</a>
 <ul>
 <li>fileExtensions: <code>&quot;java&quot;</code></li>
 <li>max: <code>&quot;100&quot;</code></li>
 <li>ignorePattern: <code>&quot;^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://&quot;</code></li></ul></td>
-<td>21</td>
+<td>22</td>
 <td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td></tr>
-<tr class="a">
+<tr class="b">
 <td></td>
 <td><a class="externalLink" href="https://checkstyle.org/checks/sizes/methodlength.html">MethodLength</a>
 <ul>
@@ -679,190 +684,166 @@
 <th>Line</th></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>imports</td>
+<td>AvoidStarImport</td>
+<td>Using the '.*' form of import should be avoided - com.kerware.simulateurreusine.calcul.*.</td>
+<td>4</td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getRevenuReference' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getRevenuReference' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>49</td></tr>
-<tr class="a">
+<td>47</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getDecote' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getDecote' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>53</td></tr>
-<tr class="b">
+<td>51</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getAbattement' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getAbattement' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>58</td></tr>
-<tr class="a">
+<td>56</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getNbParts' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getNbParts' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>62</td></tr>
-<tr class="b">
+<td>60</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getImpotAvantDecote' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getImpotAvantDecote' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>66</td></tr>
-<tr class="a">
+<td>64</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getImpotNet' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getImpotNet' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>70</td></tr>
-<tr class="b">
+<td>68</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getRevenuNetDeclatant1' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getRevenuNetDeclatant1' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>74</td></tr>
-<tr class="a">
+<td>72</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getRevenuNetDeclatant2' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getRevenuNetDeclatant2' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>78</td></tr>
-<tr class="b">
+<td>76</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'getMontantContributionExceptionnelle' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'getMontantContributionExceptionnelle' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>82</td></tr>
-<tr class="a">
+<td>80</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>design</td>
 <td>DesignForExtension</td>
 <td>Class 'SimulateurReusine' looks like designed for extension (can be subclassed), but the method 'calculImpot' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'SimulateurReusine' final or making the method 'calculImpot' static/final/abstract/empty, or adding allowed annotation for the method.</td>
-<td>89</td></tr>
-<tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>metrics</td>
-<td>CyclomaticComplexity</td>
-<td>Cyclomatic Complexity is 29 (max allowed is 15).</td>
-<td>89</td></tr>
+<td>87</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>MethodLength</td>
-<td>Method calculImpot length is 228 lines (max allowed is 50).</td>
-<td>89</td></tr>
+<td>Method calculImpot length is 192 lines (max allowed is 50).</td>
+<td>87</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 100 characters (found 104).</td>
-<td>98</td></tr>
+<td>96</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 100 characters (found 140).</td>
-<td>99</td></tr>
+<td>97</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 100 characters (found 122).</td>
-<td>144</td></tr>
+<td>142</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 100 characters (found 124).</td>
-<td>147</td></tr>
+<td>145</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>coding</td>
-<td>MissingSwitchDefault</td>
-<td>switch without &quot;default&quot; clause.</td>
-<td>154</td></tr>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 100 characters (found 122).</td>
+<td>163</td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>coding</td>
-<td>MagicNumber</td>
-<td>'0.5' is a magic number.</td>
-<td>177</td></tr>
-<tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>coding</td>
-<td>MagicNumber</td>
-<td>'0.5' is a magic number.</td>
-<td>188</td></tr>
-<tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>coding</td>
-<td>MagicNumber</td>
-<td>'0.5' is a magic number.</td>
-<td>198</td></tr>
-<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 100 characters (found 104).</td>
-<td>207</td></tr>
-<tr class="a">
+<td>168</td></tr>
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 100 characters (found 140).</td>
-<td>209</td></tr>
-<tr class="b">
+<td>170</td></tr>
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 100 characters (found 141).</td>
-<td>211</td></tr>
-<tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 100 characters (found 135).</td>
-<td>216</td></tr>
+<td>172</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
-<td>Line is longer than 100 characters (found 136).</td>
-<td>218</td></tr>
+<td>Line is longer than 100 characters (found 135).</td>
+<td>177</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>coding</td>
-<td>MagicNumber</td>
-<td>'5' is a magic number.</td>
-<td>222</td></tr>
+<td>sizes</td>
+<td>LineLength</td>
+<td>Line is longer than 100 characters (found 136).</td>
+<td>179</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 100 characters (found 120).</td>
+<td>186</td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>coding</td>
+<td>MagicNumber</td>
+<td>'5' is a magic number.</td>
+<td>204</td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>coding</td>
+<td>MagicNumber</td>
+<td>'5' is a magic number.</td>
 <td>225</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>MagicNumber</td>
-<td>'5' is a magic number.</td>
-<td>242</td></tr>
-<tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>coding</td>
-<td>MagicNumber</td>
-<td>'5' is a magic number.</td>
-<td>263</td></tr>
-<tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>coding</td>
-<td>MagicNumber</td>
 <td>'0.5' is a magic number.</td>
-<td>281</td></tr>
+<td>243</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 100 characters (found 101).</td>
-<td>304</td></tr></table></section></section></section>
+<td>266</td></tr></table></section></section></section>
       </div>
     </div>
     <div class="clear">
