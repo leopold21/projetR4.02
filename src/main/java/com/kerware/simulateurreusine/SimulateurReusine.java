@@ -2,6 +2,7 @@ package com.kerware.simulateurreusine;
 
 import com.kerware.simulateur.SituationFamiliale;
 import com.kerware.simulateurreusine.calcul.Abattement;
+import com.kerware.simulateurreusine.calcul.PartsFiscales;
 import com.kerware.simulateurreusine.calcul.Revenu;
 import com.kerware.simulateurreusine.calcul.VerificateurDonneesFiscales;
 import com.kerware.simulateurreusine.outils.ConstantesFiscales;
@@ -151,53 +152,14 @@ public class SimulateurReusine {
 
         // parts déclarants
         // EXIG  : EXG_IMPOT_03
-        switch ( paramSituationFamilial ) {
-            case CELIBATAIRE:
-                nbPartsDeclarants = 1;
-                break;
-            case MARIE:
-                nbPartsDeclarants = 2;
-                break;
-            case DIVORCE:
-                nbPartsDeclarants = 1;
-                break;
-            case VEUF:
-                nbPartsDeclarants = 1;
-                break;
-            case PACSE:
-                nbPartsDeclarants = 2;
-                break;
-        }
-
-        System.out.println( "Nombre d'enfants  : " + this.nbEnfants);
-        System.out.println( "Nombre d'enfants handicapés : " + this.nbEnfantsHandicapes);
-
-        // parts enfants à charge
-        if ( this.nbEnfants <= 2 ) {
-            nbPartsFoyer = nbPartsDeclarants + this.nbEnfants * 0.5;
-        } else if ( this.nbEnfants > 2 ) {
-            nbPartsFoyer = nbPartsDeclarants +  1.0 + ( this.nbEnfants - 2 );
-        }
-
-        // parent isolé
-
-        System.out.println( "Parent isolé : " + estParentIsole);
-
-        if (estParentIsole) {
-            if ( this.nbEnfants > 0 ){
-                nbPartsFoyer = nbPartsFoyer + 0.5;
-            }
-        }
-
-        // Veuf avec enfant
-        if ( paramSituationFamilial == SituationFamiliale.VEUF && this.nbEnfants > 0 ) {
-            nbPartsFoyer = nbPartsFoyer + 1;
-        }
-
-        // enfant handicapé
-        nbPartsFoyer = nbPartsFoyer + this.nbEnfantsHandicapes * 0.5;
-
-        System.out.println( "Nombre de parts : " + nbPartsFoyer);
+        nbPartsDeclarants = PartsFiscales.calculerPartsDeclarants(paramSituationFamilial);
+        nbPartsFoyer = PartsFiscales.calculerPartsFoyer(
+            paramSituationFamilial,
+            nbPartsDeclarants,
+            this.nbEnfants,
+            this.nbEnfantsHandicapes,
+            estParentIsole
+        );
 
         // EXIGENCE : EXG_IMPOT_07:
         // Contribution exceptionnelle sur les hauts revenus
