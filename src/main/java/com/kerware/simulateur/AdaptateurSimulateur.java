@@ -4,7 +4,7 @@ package com.kerware.simulateur;
 // le nouveau simulateur que l'on va réusiner petit à petit
 import com.kerware.simulateurreusine.SimulateurReusine;
 
-public class AdaptateurSimulateur implements ICalculateurImpot {
+public final class AdaptateurSimulateur implements ICalculateurImpot {
 
     private SimulateurReusine simulateur = new SimulateurReusine();
 

@@ -10,6 +10,7 @@ com\kerware\simulateur\AdaptateurSimulateur.class
 com\kerware\simulateurreusine\calcul\Revenu.class
 com\kerware\simulateur\ICalculateurImpot.class
 com\kerware\simulateurreusine\calcul\VerificateurDonneesFiscales.class
+com\kerware\simulateurreusine\calcul\PlafonneurAvantageFiscal.class
 com\kerware\simulateurreusine\calcul\PartsFiscales$1.class
 com\kerware\simulateur\SituationFamiliale.class
 com\kerware\simulateurreusine\calcul\ContributionExceptionnelle.class
