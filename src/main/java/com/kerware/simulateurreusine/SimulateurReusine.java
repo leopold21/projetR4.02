@@ -1,12 +1,19 @@
 package com.kerware.simulateurreusine;
 
 import com.kerware.simulateur.SituationFamiliale;
-import com.kerware.simulateurreusine.calcul.*;
+import com.kerware.simulateurreusine.calcul.Abattement;
+import com.kerware.simulateurreusine.calcul.Decote;
+import com.kerware.simulateurreusine.calcul.Impot;
+import com.kerware.simulateurreusine.calcul.PartsFiscales;
+import com.kerware.simulateurreusine.calcul.PlafonneurAvantageFiscal;
+import com.kerware.simulateurreusine.calcul.Revenu;
+import com.kerware.simulateurreusine.calcul.VerificateurDonneesFiscales;
+import com.kerware.simulateurreusine.calcul.ContributionExceptionnelle;
 import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 
 
 // Version réusinée du Simulateur, adaptée pour une meilleure modularité et lisibilité
-public class SimulateurReusine {
+public final class SimulateurReusine {
 
     // revenu net
     private int revenuNetDeclarant1 = 0;
@@ -105,9 +112,6 @@ public class SimulateurReusine {
             boolean paramEstParentIsol
     ) {
 
-//        VerificateurDonneesFiscales verificateurDonnees = new VerificateurDonneesFiscales(0, 0, 0, 0);
-//        verificateurDonnees.verifierDonnees(revNetDecl1, revNetDecl2, paramSituationFamilial, nbEnfants, nbEnfantsHandicapes, parentIsol);
-
         VerificateurDonneesFiscales.verifierDonnees(
                 paramRevenuNetDeclarant1,
                 paramRevenuNetDeclarant2,
@@ -151,10 +155,18 @@ public class SimulateurReusine {
 
         // Abattement
         // EXIGENCE : EXG_IMPOT_02
-        this.abattement = Abattement.calculerAbattement(paramSituationFamilial, revenuNetDeclarant1, revenuNetDeclarant2);
+        this.abattement = Abattement.calculerAbattement(
+                paramSituationFamilial,
+                revenuNetDeclarant1,
+                revenuNetDeclarant2
+        );
         System.out.println( "Abattement : " + abattement);
 
-        this.revenuFiscalReference = Revenu.calculerRevenuFiscal(revenuNetDeclarant1, revenuNetDeclarant2, this.abattement);
+        this.revenuFiscalReference = Revenu.calculerRevenuFiscal(
+                revenuNetDeclarant1,
+                revenuNetDeclarant2,
+                this.abattement
+        );
 
         System.out.println( "Revenu fiscal de référence : " + revenuFiscalReference);
 
@@ -172,125 +184,43 @@ public class SimulateurReusine {
 
         // EXIGENCE : EXG_IMPOT_07:
         // Contribution exceptionnelle sur les hauts revenus
-        montantContributionExceptionnelle = ContributionExceptionnelle.calculer(revenuFiscalReference, nbPartsDeclarants);
-        /*
-        montantContributionExceptionnelle = 0;
-        int i = 0;
-        do {
-            if ( revenuFiscalReference >= limitesCEHR[i] && revenuFiscalReference < limitesCEHR[i+1] ) {
-                if ( nbPartsDeclarants == 1 ) {
-                    montantContributionExceptionnelle += ( revenuFiscalReference - limitesCEHR[i] ) * ConstantesFiscales.TAUX_CEHR_CELIB[i];
-                } else {
-                    montantContributionExceptionnelle += ( revenuFiscalReference - limitesCEHR[i] ) * ConstantesFiscales.TAUX_CEHR_COUPLE[i];
-                }
-                break;
-            } else {
-                if ( nbPartsDeclarants == 1 ) {
-                    montantContributionExceptionnelle += ( limitesCEHR[i+1] - limitesCEHR[i] ) * ConstantesFiscales.TAUX_CEHR_CELIB[i];
-                } else {
-                    montantContributionExceptionnelle += ( limitesCEHR[i+1] - limitesCEHR[i] ) * ConstantesFiscales.TAUX_CEHR_COUPLE[i];
-                }
-            }
-            i++;
-        } while( i < 5);
+        montantContributionExceptionnelle = ContributionExceptionnelle.calculer(
+                revenuFiscalReference,
+                nbPartsDeclarants
+        );
 
-        montantContributionExceptionnelle = Math.round(montantContributionExceptionnelle);
-        System.out.println( "Contribution exceptionnelle sur les hauts revenus : " + montantContributionExceptionnelle);
-        */
 
         // Calcul impôt des declarants
         // EXIGENCE : EXG_IMPOT_04
-        revenuImposable = revenuFiscalReference / nbPartsDeclarants;
-
-        montantImpotDeclarant = 0;
-
-        int i = 0;
-        do {
-            if ( revenuImposable >= limites[i] && revenuImposable < limites[i+1] ) {
-                montantImpotDeclarant += ( revenuImposable - limites[i] ) * taux[i];
-                break;
-            } else {
-                montantImpotDeclarant += ( limites[i+1] - limites[i] ) * taux[i];
-            }
-            i++;
-        } while( i < 5);
-
-        montantImpotDeclarant = montantImpotDeclarant * nbPartsDeclarants;
-        montantImpotDeclarant = Math.round(montantImpotDeclarant);
-
-        System.out.println( "Impôt brut des déclarants : " + montantImpotDeclarant);
+        montantImpotDeclarant = Impot.calculerImpotBrut(revenuFiscalReference, nbPartsDeclarants);
 
         // Calcul impôt foyer fiscal complet
         // EXIGENCE : EXG_IMPOT_04
-        revenuImposable =  revenuFiscalReference / nbPartsFoyer;
-        montantImpotFoyer = 0;
-        i = 0;
+        montantImpotFoyer = Impot.calculerImpotBrut(revenuFiscalReference, nbPartsFoyer);
 
-        do {
-            if ( revenuImposable >= limites[i] && revenuImposable < limites[i+1] ) {
-                montantImpotFoyer += ( revenuImposable - limites[i] ) * taux[i];
-                break;
-            } else {
-                montantImpotFoyer += ( limites[i+1] - limites[i] ) * taux[i];
-            }
-            i++;
-        } while( i < 5);
-
-        montantImpotFoyer = montantImpotFoyer * nbPartsFoyer;
-        montantImpotFoyer = Math.round(montantImpotFoyer);
-
-        System.out.println( "Impôt brut du foyer fiscal complet : " + montantImpotFoyer);
 
         // Vérification de la baisse d'impôt autorisée
         // EXIGENCE : EXG_IMPOT_05
         // baisse impot
-
-        double baisseImpot = montantImpotDeclarant - montantImpotFoyer;
-
-        System.out.println( "Baisse d'impôt : " + baisseImpot );
-
-        // dépassement plafond
-        double ecartPts = nbPartsFoyer - nbPartsDeclarants;
-
-        double plafond = (ecartPts / 0.5) * ConstantesFiscales.PLAFOND_DEMI_PART;
-
-        System.out.println( "Plafond de baisse autorisée " + plafond );
-
-        if ( baisseImpot >= plafond ) {
-            montantImpotFoyer = montantImpotDeclarant - plafond;
-        }
-
-        System.out.println( "Impôt brut après plafonnement avant decote : " + montantImpotFoyer);
-        montantImpotAvantDecote = montantImpotFoyer;
+        montantImpotAvantDecote = PlafonneurAvantageFiscal.appliquerPlafond(
+                montantImpotDeclarant,
+                montantImpotFoyer,
+                nbPartsDeclarants,
+                nbPartsFoyer
+        );
 
         // Calcul de la decote
         // EXIGENCE : EXG_IMPOT_06
 
-        decote = 0;
-        // decote
-        if ( nbPartsDeclarants == 1 ) {
-            if ( montantImpotFoyer < ConstantesFiscales.SEUIL_DECOTE_SEUL ) {
-                decote = ConstantesFiscales.DECOTE_MAX_SEUL - ( montantImpotFoyer * tauxDecote );
-            }
-        }
-        if (  nbPartsDeclarants == 2 ) {
-            if ( montantImpotFoyer < ConstantesFiscales.SEUIL_DECOTE_COUPLE ) {
-                decote =  ConstantesFiscales.DECOTE_MAX_COUPLE - ( montantImpotFoyer * tauxDecote  );
-            }
-        }
-        decote = Math.round( decote );
-
-        if ( montantImpotFoyer <= decote ) {
-            decote = montantImpotFoyer;
-        }
+        decote = Decote.calculer(montantImpotFoyer, nbPartsDeclarants);
 
         System.out.println( "Decote : " + decote );
 
-        montantImpotFoyer = montantImpotFoyer - decote;
-
-        montantImpotFoyer += montantContributionExceptionnelle;
-
-        montantImpotFoyer = Math.round(montantImpotFoyer);
+        montantImpotFoyer = Impot.calculerImpotNet(
+            montantImpotAvantDecote,
+            montantContributionExceptionnelle,
+            decote
+        );
 
         System.out.println( "Impôt sur le revenu net final : " + montantImpotFoyer);
         return  (int) montantImpotFoyer;
