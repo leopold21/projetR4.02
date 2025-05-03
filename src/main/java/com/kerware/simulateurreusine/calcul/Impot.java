@@ -3,7 +3,14 @@ package com.kerware.simulateurreusine.calcul;
 import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 
 public class Impot {
-
+    /**
+     * Calculates gross income tax based on reference tax income and number of units.
+     *
+     * @param revenuFiscalReference tax income of reference
+     * @param nbParts number of tax household units
+     *
+     * @return gross tax amount
+     */
     public static double calculerImpotBrut(double revenuFiscalReference, double nbParts) {
         double revenuImposable = revenuFiscalReference / nbParts;
         double montantImpot = 0;
@@ -26,6 +33,16 @@ public class Impot {
         return Math.round(montantImpot);
     }
 
+    /**
+     * Calculates the net tax payable based on the household's gross tax, the exceptional
+     * contribution to high incomes, and the discount applied.
+     *
+     * @param impotBrutFoyer household gross tax
+     * @param contributionExceptionnelle exceptional tax on high incomes
+     * @param decote amount of discount applied to gross tax
+     *
+     * @return net tax amount
+     */
     public static double calculerImpotNet(
             double impotBrutFoyer,
             double contributionExceptionnelle,

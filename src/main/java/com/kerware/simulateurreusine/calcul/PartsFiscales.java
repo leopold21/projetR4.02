@@ -14,7 +14,7 @@ public class PartsFiscales {
 
     /**
      *
-     * Calculates the number of declaring units based on family situation
+     * Calculates the number of declaring units based on family situation.
      *
      * @param paramSituationFamilial marital status (single, civil partnership, married, divorced or widowed)
      *

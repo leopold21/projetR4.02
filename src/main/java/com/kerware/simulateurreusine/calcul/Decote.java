@@ -4,6 +4,15 @@ import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 
 public class Decote {
 
+    /**
+     * Calculates the discount applicable to tax based on the amount of tax and the number of units
+     * in the tax household.
+     *
+     * @param montantImpot gross tax amount
+     * @param nbParts number of tax household units
+     *
+     * @return discount amount
+     */
     public static double calculer(double montantImpot, double nbParts) {
         double decote = 0;
 
