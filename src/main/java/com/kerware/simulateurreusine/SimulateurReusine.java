@@ -1,10 +1,7 @@
 package com.kerware.simulateurreusine;
 
 import com.kerware.simulateur.SituationFamiliale;
-import com.kerware.simulateurreusine.calcul.Abattement;
-import com.kerware.simulateurreusine.calcul.PartsFiscales;
-import com.kerware.simulateurreusine.calcul.Revenu;
-import com.kerware.simulateurreusine.calcul.VerificateurDonneesFiscales;
+import com.kerware.simulateurreusine.calcul.*;
 import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 
 
@@ -163,6 +160,8 @@ public class SimulateurReusine {
 
         // EXIGENCE : EXG_IMPOT_07:
         // Contribution exceptionnelle sur les hauts revenus
+        montantContributionExceptionnelle = ContributionExceptionnelle.calculer(revenuFiscalReference, nbPartsDeclarants);
+        /*
         montantContributionExceptionnelle = 0;
         int i = 0;
         do {
@@ -185,6 +184,7 @@ public class SimulateurReusine {
 
         montantContributionExceptionnelle = Math.round(montantContributionExceptionnelle);
         System.out.println( "Contribution exceptionnelle sur les hauts revenus : " + montantContributionExceptionnelle);
+        */
 
         // Calcul impôt des declarants
         // EXIGENCE : EXG_IMPOT_04
@@ -192,7 +192,7 @@ public class SimulateurReusine {
 
         montantImpotDeclarant = 0;
 
-        i = 0;
+        int i = 0;
         do {
             if ( revenuImposable >= limites[i] && revenuImposable < limites[i+1] ) {
                 montantImpotDeclarant += ( revenuImposable - limites[i] ) * taux[i];
