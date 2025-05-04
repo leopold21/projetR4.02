@@ -181,6 +181,10 @@
                     </reportSet>
                 </reportSets>
                 <configuration>
+<!--                    <excludes>-->
+<!--                        &lt;!&ndash; Permet de ne pas prendre en compte la classe Simulateur.java &ndash;&gt;-->
+<!--                        <exclude>com/kerware/simulateur/Simulateur.class</exclude>-->
+<!--                    </excludes>-->
                     <!-- Choix de la configuration Checkstyle -->
                     <configLocation>src/test/resources/iut-caen-checks.xml</configLocation> <!-- ou sun_checks.xml -->
                     <failsOnError>true</failsOnError>

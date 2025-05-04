@@ -26,193 +26,143 @@ import com.kerware.simulateurreusine.outils.ConstantesFiscales;
     // revenu fiscal de référence
 <span class="fc" id="L27">    private double revenuFiscalReference = 0;</span>
 
-    // revenu imposable
-<span class="fc" id="L30">    private double revenuImposable = 0;</span>
-
     // abattement
-<span class="fc" id="L33">    private double abattement = 0;</span>
+<span class="fc" id="L30">    private double abattement = 0;</span>
 
     // nombre de parts des  déclarants
-<span class="fc" id="L36">    private double nbPartsDeclarants = 0;</span>
+<span class="fc" id="L33">    private double nbPartsDeclarants = 0;</span>
     // nombre de parts du foyer fiscal
-<span class="fc" id="L38">    private double nbPartsFoyer = 0;</span>
+<span class="fc" id="L35">    private double nbPartsFoyer = 0;</span>
 
     // decote
-<span class="fc" id="L41">    private double decote = 0;</span>
+<span class="fc" id="L38">    private double decote = 0;</span>
     // impôt des déclarants
-<span class="fc" id="L43">    private double montantImpotDeclarant = 0;</span>
+<span class="fc" id="L40">    private double montantImpotDeclarant = 0;</span>
     // impôt du foyer fiscal
-<span class="fc" id="L45">    private double montantImpotFoyer = 0;</span>
-<span class="fc" id="L46">    private double montantImpotAvantDecote = 0;</span>
+<span class="fc" id="L42">    private double montantImpotFoyer = 0;</span>
+<span class="fc" id="L43">    private double montantImpotAvantDecote = 0;</span>
     // parent isolé
-<span class="fc" id="L48">    private boolean estParentIsole = false;</span>
+<span class="fc" id="L45">    private boolean estParentIsole = false;</span>
     // Contribution exceptionnelle sur les hauts revenus
-<span class="fc" id="L50">    private double montantContributionExceptionnelle = 0;</span>
+<span class="fc" id="L47">    private double montantContributionExceptionnelle = 0;</span>
 
     // Getters pour adapter le code legacy pour les tests unitaires
 
     public double getRevenuReference() {
-<span class="nc" id="L55">        return revenuFiscalReference;</span>
+<span class="nc" id="L52">        return revenuFiscalReference;</span>
     }
 
     public double getDecote() {
-<span class="nc" id="L59">        return decote;</span>
+<span class="nc" id="L56">        return decote;</span>
     }
 
 
     public double getAbattement() {
-<span class="fc" id="L64">        return abattement;</span>
+<span class="fc" id="L61">        return abattement;</span>
     }
 
     public double getNbParts() {
-<span class="fc" id="L68">        return nbPartsFoyer;</span>
+<span class="fc" id="L65">        return nbPartsFoyer;</span>
     }
 
     public double getImpotAvantDecote() {
-<span class="nc" id="L72">        return montantImpotAvantDecote;</span>
+<span class="nc" id="L69">        return montantImpotAvantDecote;</span>
     }
 
     public double getImpotNet() {
-<span class="fc" id="L76">        return montantImpotFoyer;</span>
+<span class="fc" id="L73">        return montantImpotFoyer;</span>
     }
 
     public int getRevenuNetDeclatant1() {
-<span class="nc" id="L80">        return revenuNetDeclarant1;</span>
+<span class="nc" id="L77">        return revenuNetDeclarant1;</span>
     }
 
     public int getRevenuNetDeclatant2() {
-<span class="nc" id="L84">        return revenuNetDeclarant2;</span>
+<span class="nc" id="L81">        return revenuNetDeclarant2;</span>
     }
 
     public double getMontantContributionExceptionnelle() {
-<span class="nc" id="L88">        return montantContributionExceptionnelle;</span>
+<span class="nc" id="L85">        return montantContributionExceptionnelle;</span>
     }
+
+    private void initialiserVariables(
+            int rev1, int rev2, int enfants, int enfantsHandicapes, boolean isolé
+    ) {
+<span class="fc" id="L91">        this.revenuNetDeclarant1 = rev1;</span>
+<span class="fc" id="L92">        this.revenuNetDeclarant2 = rev2;</span>
+<span class="fc" id="L93">        this.nbEnfants = enfants;</span>
+<span class="fc" id="L94">        this.nbEnfantsHandicapes = enfantsHandicapes;</span>
+<span class="fc" id="L95">        this.estParentIsole = isolé;</span>
+<span class="fc" id="L96">    }</span>
 
 
     // Fonction de calcul de l'impôt sur le revenu net en France en 2024 sur les revenu 2023
 
     public int calculImpot(
-            int paramRevenuNetDeclarant1,
-            int paramRevenuNetDeclarant2,
-            SituationFamiliale paramSituationFamilial,
-            int paramNbEnfants,
-            int paramNbEnfantsHandicapes,
-            boolean paramEstParentIsol
+            int paramRevenuNetDeclarant1, int paramRevenuNetDeclarant2,
+            SituationFamiliale paramSituationFamilial, int paramNbEnfants,
+            int paramNbEnfantsHandicapes, boolean paramEstParentIsol
     ) {
-
-<span class="fc" id="L103">        VerificateurDonneesFiscales.verifierDonnees(</span>
-                paramRevenuNetDeclarant1,
-                paramRevenuNetDeclarant2,
-                paramSituationFamilial,
-                paramNbEnfants,
-                paramNbEnfantsHandicapes,
-                paramEstParentIsol
-        );
+<span class="fc" id="L106">        VerificateurDonneesFiscales.verifierDonnees(paramRevenuNetDeclarant1,</span>
+                paramRevenuNetDeclarant2, paramSituationFamilial,
+                paramNbEnfants, paramNbEnfantsHandicapes, paramEstParentIsol);
 
         // Initialisation des variables
-<span class="fc" id="L113">        revenuNetDeclarant1 = paramRevenuNetDeclarant1;</span>
-<span class="fc" id="L114">        revenuNetDeclarant2 = paramRevenuNetDeclarant2;</span>
+<span class="fc" id="L111">        initialiserVariables(paramRevenuNetDeclarant1, paramRevenuNetDeclarant2,</span>
+                paramNbEnfants, paramNbEnfantsHandicapes, paramEstParentIsol);
 
-<span class="fc" id="L116">        this.nbEnfants = paramNbEnfants;</span>
-<span class="fc" id="L117">        this.nbEnfantsHandicapes = paramNbEnfantsHandicapes;</span>
-<span class="fc" id="L118">        estParentIsole = paramEstParentIsol;</span>
+        // Abattement EXIGENCE : EXG_IMPOT_02
+<span class="fc" id="L115">        this.abattement = Abattement.calculerAbattement(</span>
+                paramSituationFamilial, revenuNetDeclarant1, revenuNetDeclarant2);
+<span class="fc" id="L117">        this.revenuFiscalReference = Revenu.calculerRevenuFiscal(</span>
+                revenuNetDeclarant1, revenuNetDeclarant2, this.abattement);
 
-<span class="fc" id="L120">        int[] limites = ConstantesFiscales.TRANCHES;</span>
-<span class="fc" id="L121">        double[] taux = ConstantesFiscales.TAUX;</span>
+        // parts déclarants EXIG  : EXG_IMPOT_03
+<span class="fc" id="L121">        nbPartsDeclarants = PartsFiscales.calculerPartsDeclarants(paramSituationFamilial);</span>
+<span class="fc" id="L122">        nbPartsFoyer = PartsFiscales.calculerPartsFoyer(paramSituationFamilial, nbPartsDeclarants,</span>
+            this.nbEnfants, this.nbEnfantsHandicapes, estParentIsole);
 
-<span class="fc" id="L123">        int[] limitesCEHR = ConstantesFiscales.CEHR;</span>
-<span class="fc" id="L124">        double[] tauxCelib = ConstantesFiscales.TAUX_CEHR_CELIB;</span>
-<span class="fc" id="L125">        double[] tauxCouple = ConstantesFiscales.TAUX_CEHR_COUPLE;</span>
+        // Contribution exceptionnelle sur les hauts revenus EXIGENCE : EXG_IMPOT_07:
+<span class="fc" id="L126">        montantContributionExceptionnelle = ContributionExceptionnelle.calculer(</span>
+                revenuFiscalReference, nbPartsDeclarants);
 
-<span class="fc" id="L127">        double tauxAbattement = ConstantesFiscales.TAUX_ABATTEMENT;</span>
-<span class="fc" id="L128">        int abattementMax = ConstantesFiscales.ABATTEMENT_MAX;</span>
-<span class="fc" id="L129">        int abattementMin = ConstantesFiscales.ABATTEMENT_MIN;</span>
+        // Calcul impôt des declarants : EXIGENCE : EXG_IMPOT_04
+<span class="fc" id="L130">        montantImpotDeclarant = Impot.calculerImpotBrut(revenuFiscalReference, nbPartsDeclarants);</span>
 
-<span class="fc" id="L131">        double plafondDemiPart = ConstantesFiscales.PLAFOND_DEMI_PART;</span>
+        // Calcul impôt foyer fiscal complet : EXIGENCE : EXG_IMPOT_04
+<span class="fc" id="L133">        montantImpotFoyer = Impot.calculerImpotBrut(revenuFiscalReference, nbPartsFoyer);</span>
 
-<span class="fc" id="L133">        double seuilSeul = ConstantesFiscales.SEUIL_DECOTE_SEUL;</span>
-<span class="fc" id="L134">        double seuilCouple = ConstantesFiscales.SEUIL_DECOTE_COUPLE;</span>
-<span class="fc" id="L135">        double decoteMaxSeul = ConstantesFiscales.DECOTE_MAX_SEUL;</span>
-<span class="fc" id="L136">        double decoteMaxCouple = ConstantesFiscales.DECOTE_MAX_COUPLE;</span>
-<span class="fc" id="L137">        double tauxDecote = ConstantesFiscales.TAUX_DECOTE;</span>
-
-<span class="fc" id="L139">        System.out.println(&quot;--------------------------------------------------&quot;);</span>
-<span class="fc" id="L140">        System.out.println( &quot;Revenu net declarant1 : &quot; + revenuNetDeclarant1);</span>
-<span class="fc" id="L141">        System.out.println( &quot;Revenu net declarant2 : &quot; + revenuNetDeclarant2);</span>
-<span class="fc" id="L142">        System.out.println( &quot;Situation familiale : &quot; + paramSituationFamilial.name() );</span>
-
-        // Abattement
-        // EXIGENCE : EXG_IMPOT_02
-<span class="fc" id="L146">        this.abattement = Abattement.calculerAbattement(</span>
-                paramSituationFamilial,
-                revenuNetDeclarant1,
-                revenuNetDeclarant2
-        );
-<span class="fc" id="L151">        System.out.println( &quot;Abattement : &quot; + abattement);</span>
-
-<span class="fc" id="L153">        this.revenuFiscalReference = Revenu.calculerRevenuFiscal(</span>
-                revenuNetDeclarant1,
-                revenuNetDeclarant2,
-                this.abattement
-        );
-
-<span class="fc" id="L159">        System.out.println( &quot;Revenu fiscal de référence : &quot; + revenuFiscalReference);</span>
-
-
-        // parts déclarants
-        // EXIG  : EXG_IMPOT_03
-<span class="fc" id="L164">        nbPartsDeclarants = PartsFiscales.calculerPartsDeclarants(paramSituationFamilial);</span>
-<span class="fc" id="L165">        nbPartsFoyer = PartsFiscales.calculerPartsFoyer(</span>
-            paramSituationFamilial,
-            nbPartsDeclarants,
-            this.nbEnfants,
-            this.nbEnfantsHandicapes,
-            estParentIsole
-        );
-
-        // EXIGENCE : EXG_IMPOT_07:
-        // Contribution exceptionnelle sur les hauts revenus
-<span class="fc" id="L175">        montantContributionExceptionnelle = ContributionExceptionnelle.calculer(</span>
-                revenuFiscalReference,
-                nbPartsDeclarants
-        );
-
-
-        // Calcul impôt des declarants
-        // EXIGENCE : EXG_IMPOT_04
-<span class="fc" id="L183">        montantImpotDeclarant = Impot.calculerImpotBrut(revenuFiscalReference, nbPartsDeclarants);</span>
-
-        // Calcul impôt foyer fiscal complet
-        // EXIGENCE : EXG_IMPOT_04
-<span class="fc" id="L187">        montantImpotFoyer = Impot.calculerImpotBrut(revenuFiscalReference, nbPartsFoyer);</span>
-
-
-        // Vérification de la baisse d'impôt autorisée
-        // EXIGENCE : EXG_IMPOT_05
+        // Vérification de la baisse d'impôt autorisée : EXIGENCE : EXG_IMPOT_05
         // baisse impot
-<span class="fc" id="L193">        montantImpotAvantDecote = PlafonneurAvantageFiscal.appliquerPlafond(</span>
-                montantImpotDeclarant,
-                montantImpotFoyer,
-                nbPartsDeclarants,
-                nbPartsFoyer
-        );
+<span class="fc" id="L137">        montantImpotAvantDecote = PlafonneurAvantageFiscal.appliquerPlafond(</span>
+                montantImpotDeclarant, montantImpotFoyer, nbPartsDeclarants, nbPartsFoyer );
 
-        // Calcul de la decote
-        // EXIGENCE : EXG_IMPOT_06
+        // Calcul de la decote : EXIGENCE : EXG_IMPOT_06
+<span class="fc" id="L141">        decote = Decote.calculer(montantImpotFoyer, nbPartsDeclarants);</span>
 
-<span class="fc" id="L203">        decote = Decote.calculer(montantImpotFoyer, nbPartsDeclarants);</span>
+<span class="fc" id="L143">        montantImpotFoyer = Impot.calculerImpotNet(</span>
+            montantImpotAvantDecote, montantContributionExceptionnelle, decote );
 
-<span class="fc" id="L205">        System.out.println( &quot;Decote : &quot; + decote );</span>
-
-<span class="fc" id="L207">        montantImpotFoyer = Impot.calculerImpotNet(</span>
-            montantImpotAvantDecote,
-            montantContributionExceptionnelle,
-            decote
-        );
-
-<span class="fc" id="L213">        System.out.println( &quot;Impôt sur le revenu net final : &quot; + montantImpotFoyer);</span>
-<span class="fc" id="L214">        return  (int) montantImpotFoyer;</span>
+<span class="fc" id="L146">        afficherInformationsFinales(paramSituationFamilial);</span>
+<span class="fc" id="L147">        return  (int) montantImpotFoyer;</span>
     }
+
+    private void afficherInformationsFinales(SituationFamiliale situation) {
+<span class="fc" id="L151">        System.out.println(&quot;--------------------------------------------------&quot;);</span>
+<span class="fc" id="L152">        System.out.println(&quot;Revenu net declarant1 : &quot; + revenuNetDeclarant1);</span>
+<span class="fc" id="L153">        System.out.println(&quot;Revenu net declarant2 : &quot; + revenuNetDeclarant2);</span>
+<span class="fc" id="L154">        System.out.println(&quot;Situation familiale : &quot; + situation.name());</span>
+<span class="fc" id="L155">        System.out.println(&quot;Abattement : &quot; + abattement);</span>
+<span class="fc" id="L156">        System.out.println(&quot;Revenu fiscal de référence : &quot; + revenuFiscalReference);</span>
+<span class="fc" id="L157">        System.out.println(&quot;Parts déclarants : &quot; + nbPartsDeclarants);</span>
+<span class="fc" id="L158">        System.out.println(&quot;Parts foyer fiscal : &quot; + nbPartsFoyer);</span>
+<span class="fc" id="L159">        System.out.println(&quot;Impôt brut déclarants : &quot; + montantImpotDeclarant);</span>
+<span class="fc" id="L160">        System.out.println(&quot;Impôt brut foyer : &quot; + montantImpotFoyer);</span>
+<span class="fc" id="L161">        System.out.println(&quot;Impôt plafonné (avant décote) : &quot; + montantImpotAvantDecote);</span>
+<span class="fc" id="L162">        System.out.println(&quot;Décote : &quot; + decote);</span>
+<span class="fc" id="L163">        System.out.println(&quot;Contribution exceptionnelle : &quot; + montantContributionExceptionnelle);</span>
+<span class="fc" id="L164">        System.out.println(&quot;Impôt net final : &quot; + montantImpotFoyer);</span>
+<span class="fc" id="L165">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -26,9 +26,6 @@ public final class SimulateurReusine {
     // revenu fiscal de référence
     private double revenuFiscalReference = 0;
 
-    // revenu imposable
-    private double revenuImposable = 0;
-
     // abattement
     private double abattement = 0;
 
@@ -88,130 +85,83 @@ public final class SimulateurReusine {
         return montantContributionExceptionnelle;
     }
 
+    private void initialiserVariables(
+            int rev1, int rev2, int enfants, int enfantsHandicapes, boolean isolé
+    ) {
+        this.revenuNetDeclarant1 = rev1;
+        this.revenuNetDeclarant2 = rev2;
+        this.nbEnfants = enfants;
+        this.nbEnfantsHandicapes = enfantsHandicapes;
+        this.estParentIsole = isolé;
+    }
+
 
     // Fonction de calcul de l'impôt sur le revenu net en France en 2024 sur les revenu 2023
 
     public int calculImpot(
-            int paramRevenuNetDeclarant1,
-            int paramRevenuNetDeclarant2,
-            SituationFamiliale paramSituationFamilial,
-            int paramNbEnfants,
-            int paramNbEnfantsHandicapes,
-            boolean paramEstParentIsol
+            int paramRevenuNetDeclarant1, int paramRevenuNetDeclarant2,
+            SituationFamiliale paramSituationFamilial, int paramNbEnfants,
+            int paramNbEnfantsHandicapes, boolean paramEstParentIsol
     ) {
-
-        VerificateurDonneesFiscales.verifierDonnees(
-                paramRevenuNetDeclarant1,
-                paramRevenuNetDeclarant2,
-                paramSituationFamilial,
-                paramNbEnfants,
-                paramNbEnfantsHandicapes,
-                paramEstParentIsol
-        );
+        VerificateurDonneesFiscales.verifierDonnees(paramRevenuNetDeclarant1,
+                paramRevenuNetDeclarant2, paramSituationFamilial,
+                paramNbEnfants, paramNbEnfantsHandicapes, paramEstParentIsol);
 
         // Initialisation des variables
-        revenuNetDeclarant1 = paramRevenuNetDeclarant1;
-        revenuNetDeclarant2 = paramRevenuNetDeclarant2;
+        initialiserVariables(paramRevenuNetDeclarant1, paramRevenuNetDeclarant2,
+                paramNbEnfants, paramNbEnfantsHandicapes, paramEstParentIsol);
 
-        this.nbEnfants = paramNbEnfants;
-        this.nbEnfantsHandicapes = paramNbEnfantsHandicapes;
-        estParentIsole = paramEstParentIsol;
-
-        int[] limites = ConstantesFiscales.TRANCHES;
-        double[] taux = ConstantesFiscales.TAUX;
-
-        int[] limitesCEHR = ConstantesFiscales.CEHR;
-        double[] tauxCelib = ConstantesFiscales.TAUX_CEHR_CELIB;
-        double[] tauxCouple = ConstantesFiscales.TAUX_CEHR_COUPLE;
-
-        double tauxAbattement = ConstantesFiscales.TAUX_ABATTEMENT;
-        int abattementMax = ConstantesFiscales.ABATTEMENT_MAX;
-        int abattementMin = ConstantesFiscales.ABATTEMENT_MIN;
-
-        double plafondDemiPart = ConstantesFiscales.PLAFOND_DEMI_PART;
-
-        double seuilSeul = ConstantesFiscales.SEUIL_DECOTE_SEUL;
-        double seuilCouple = ConstantesFiscales.SEUIL_DECOTE_COUPLE;
-        double decoteMaxSeul = ConstantesFiscales.DECOTE_MAX_SEUL;
-        double decoteMaxCouple = ConstantesFiscales.DECOTE_MAX_COUPLE;
-        double tauxDecote = ConstantesFiscales.TAUX_DECOTE;
-
-        System.out.println("--------------------------------------------------");
-        System.out.println( "Revenu net declarant1 : " + revenuNetDeclarant1);
-        System.out.println( "Revenu net declarant2 : " + revenuNetDeclarant2);
-        System.out.println( "Situation familiale : " + paramSituationFamilial.name() );
-
-        // Abattement
-        // EXIGENCE : EXG_IMPOT_02
+        // Abattement EXIGENCE : EXG_IMPOT_02
         this.abattement = Abattement.calculerAbattement(
-                paramSituationFamilial,
-                revenuNetDeclarant1,
-                revenuNetDeclarant2
-        );
-        System.out.println( "Abattement : " + abattement);
-
+                paramSituationFamilial, revenuNetDeclarant1, revenuNetDeclarant2);
         this.revenuFiscalReference = Revenu.calculerRevenuFiscal(
-                revenuNetDeclarant1,
-                revenuNetDeclarant2,
-                this.abattement
-        );
+                revenuNetDeclarant1, revenuNetDeclarant2, this.abattement);
 
-        System.out.println( "Revenu fiscal de référence : " + revenuFiscalReference);
-
-
-        // parts déclarants
-        // EXIG  : EXG_IMPOT_03
+        // parts déclarants EXIG  : EXG_IMPOT_03
         nbPartsDeclarants = PartsFiscales.calculerPartsDeclarants(paramSituationFamilial);
-        nbPartsFoyer = PartsFiscales.calculerPartsFoyer(
-            paramSituationFamilial,
-            nbPartsDeclarants,
-            this.nbEnfants,
-            this.nbEnfantsHandicapes,
-            estParentIsole
-        );
+        nbPartsFoyer = PartsFiscales.calculerPartsFoyer(paramSituationFamilial, nbPartsDeclarants,
+            this.nbEnfants, this.nbEnfantsHandicapes, estParentIsole);
 
-        // EXIGENCE : EXG_IMPOT_07:
-        // Contribution exceptionnelle sur les hauts revenus
+        // Contribution exceptionnelle sur les hauts revenus EXIGENCE : EXG_IMPOT_07:
         montantContributionExceptionnelle = ContributionExceptionnelle.calculer(
-                revenuFiscalReference,
-                nbPartsDeclarants
-        );
+                revenuFiscalReference, nbPartsDeclarants);
 
-
-        // Calcul impôt des declarants
-        // EXIGENCE : EXG_IMPOT_04
+        // Calcul impôt des declarants : EXIGENCE : EXG_IMPOT_04
         montantImpotDeclarant = Impot.calculerImpotBrut(revenuFiscalReference, nbPartsDeclarants);
 
-        // Calcul impôt foyer fiscal complet
-        // EXIGENCE : EXG_IMPOT_04
+        // Calcul impôt foyer fiscal complet : EXIGENCE : EXG_IMPOT_04
         montantImpotFoyer = Impot.calculerImpotBrut(revenuFiscalReference, nbPartsFoyer);
 
-
-        // Vérification de la baisse d'impôt autorisée
-        // EXIGENCE : EXG_IMPOT_05
+        // Vérification de la baisse d'impôt autorisée : EXIGENCE : EXG_IMPOT_05
         // baisse impot
         montantImpotAvantDecote = PlafonneurAvantageFiscal.appliquerPlafond(
-                montantImpotDeclarant,
-                montantImpotFoyer,
-                nbPartsDeclarants,
-                nbPartsFoyer
-        );
+                montantImpotDeclarant, montantImpotFoyer, nbPartsDeclarants, nbPartsFoyer );
 
-        // Calcul de la decote
-        // EXIGENCE : EXG_IMPOT_06
-
+        // Calcul de la decote : EXIGENCE : EXG_IMPOT_06
         decote = Decote.calculer(montantImpotFoyer, nbPartsDeclarants);
 
-        System.out.println( "Decote : " + decote );
-
         montantImpotFoyer = Impot.calculerImpotNet(
-            montantImpotAvantDecote,
-            montantContributionExceptionnelle,
-            decote
-        );
+            montantImpotAvantDecote, montantContributionExceptionnelle, decote );
 
-        System.out.println( "Impôt sur le revenu net final : " + montantImpotFoyer);
+        afficherInformationsFinales(paramSituationFamilial);
         return  (int) montantImpotFoyer;
+    }
+
+    private void afficherInformationsFinales(SituationFamiliale situation) {
+        System.out.println("--------------------------------------------------");
+        System.out.println("Revenu net declarant1 : " + revenuNetDeclarant1);
+        System.out.println("Revenu net declarant2 : " + revenuNetDeclarant2);
+        System.out.println("Situation familiale : " + situation.name());
+        System.out.println("Abattement : " + abattement);
+        System.out.println("Revenu fiscal de référence : " + revenuFiscalReference);
+        System.out.println("Parts déclarants : " + nbPartsDeclarants);
+        System.out.println("Parts foyer fiscal : " + nbPartsFoyer);
+        System.out.println("Impôt brut déclarants : " + montantImpotDeclarant);
+        System.out.println("Impôt brut foyer : " + montantImpotFoyer);
+        System.out.println("Impôt plafonné (avant décote) : " + montantImpotAvantDecote);
+        System.out.println("Décote : " + decote);
+        System.out.println("Contribution exceptionnelle : " + montantContributionExceptionnelle);
+        System.out.println("Impôt net final : " + montantImpotFoyer);
     }
 
 }
