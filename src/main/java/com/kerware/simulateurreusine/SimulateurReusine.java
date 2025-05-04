@@ -51,39 +51,87 @@ public final class SimulateurReusine {
 
     // Getters pour adapter le code legacy pour les tests unitaires
 
+    /**
+     *
+     * Returns the household's reference tax income.
+     *
+     * @return household reference tax income
+     */
     public double getRevenuReference() {
         return revenuFiscalReference;
     }
 
+    /**
+     *
+     Returns the amount of the discount applicable to the tax household's gross tax.
+     *
+     * @return amount of discount applicable to the gross tax of the tax household
+     */
     public double getDecote() {
         return decote;
     }
 
-
+    /**
+     *
+     Returns the amount of the applicable allowance.
+     *
+     * @return amount of allowance
+     */
     public double getAbattement() {
         return abattement;
     }
 
+    /**
+     * Returns the number of units in the tax household.
+     *
+     * @return the number of tax household units.
+     */
     public double getNbParts() {
         return nbPartsFoyer;
     }
 
+    /**
+     * Returns the tax amount before application of the discount.
+     *
+     * @return number of household tax units
+     */
     public double getImpotAvantDecote() {
         return montantImpotAvantDecote;
     }
 
+    /**
+     *
+     Returns the amount of net tax payable
+     *
+     * @return net tax payable
+     */
     public double getImpotNet() {
         return montantImpotFoyer;
     }
 
+    /**
+     * Returns the net income declared by the first tax filer in the tax household.
+     *
+     * @return net income declared by the first tax filer in the tax household
+     */
     public int getRevenuNetDeclatant1() {
         return revenuNetDeclarant1;
     }
 
+    /**
+     * Returns the net income declared by the second tax filer in the tax household.
+     *
+     * @return net income declared by the second tax filer in the tax household
+     */
     public int getRevenuNetDeclatant2() {
         return revenuNetDeclarant2;
     }
 
+    /**
+     * Returns the amount of the exceptional contribution
+     *
+     * @return the amount of the exceptional contribution
+     */
     public double getMontantContributionExceptionnelle() {
         return montantContributionExceptionnelle;
     }
@@ -92,14 +140,15 @@ public final class SimulateurReusine {
     // Fonction de calcul de l'impôt sur le revenu net en France en 2024 sur les revenu 2023
 
     /**
-     * ...
+     * Calculates the net income tax for a tax household in France in 2024,
+     * based on income declared in 2023.
      *
      * @param paramRevenuNetDeclarant1 net income declared by the first person
      * @param paramRevenuNetDeclarant2 net income declared by the second person
      * @param paramSituationFamilial marital status (single, civil partnership, married, divorced or widowed)
      * @param paramNbEnfants number of children in the family
      * @param paramNbEnfantsHandicapes among children, those with disabilities
-     * @param paramEstParentIsol whether or not the parent is single
+     * @param paramEstParentIsol whether the parent is single
      *
      * @return Amount of income tax calculated for the tax household
      */

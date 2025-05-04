@@ -37,11 +37,11 @@ public class Impot {
      * Calculates the net tax payable based on the household's gross tax, the exceptional
      * contribution to high incomes, and the discount applied.
      *
-     * @param impotBrutFoyer household gross tax
-     * @param contributionExceptionnelle exceptional tax on high incomes
-     * @param decote amount of discount applied to gross tax
+     * @param impotBrutFoyer the household gross tax
+     * @param contributionExceptionnelle the exceptional tax on high incomes
+     * @param decote the amount of discount applied to gross tax
      *
-     * @return net tax amount
+     * @return the net tax amount
      */
     public static double calculerImpotNet(
             double impotBrutFoyer,
