@@ -11,6 +11,16 @@ import com.kerware.simulateur.SituationFamiliale;
     private static final int NB_ENF_HANDICAPES_MIN = 0;
     private static final int REVENU_AUTORISE_DECLARANT2_SI_SEUL = 0;
 
+    /**
+     *  Checks the validity of the data provided for calculating tax allowances.
+     *  This method lifts an exception if one of the validity conditions is not met.
+     *
+     * @param revenuNetDeclarant1 the net income declared by the first person
+     * @param revenuNetDeclarant2 the net income declared by the second person
+     * @param nbEnfants the number of children in the family
+     * @param nbEnfantsHandicapes the among children, those with disabilities
+     * @param estparentIsole whether the parent is single
+     */
     public static void verifierDonnees(
             int revenuNetDeclarant1,
             int revenuNetDeclarant2,
@@ -19,54 +29,54 @@ import com.kerware.simulateur.SituationFamiliale;
             int nbEnfantsHandicapes,
             boolean estparentIsole
     ) {
-<span class="fc" id="L22">        String erreur = &quot;&quot;;</span>
-<span class="pc bpc" id="L23" title="1 of 4 branches missed.">        if (revenuNetDeclarant1 &lt; REVENU_MIN</span>
+<span class="fc" id="L32">        String erreur = &quot;&quot;;</span>
+<span class="pc bpc" id="L33" title="1 of 4 branches missed.">        if (revenuNetDeclarant1 &lt; REVENU_MIN</span>
                 || revenuNetDeclarant2 &lt; REVENU_MIN) {
-<span class="fc" id="L25">            erreur = &quot;Le revenu net ne peut pas être négatif&quot;;</span>
-<span class="fc" id="L26">            throw new IllegalArgumentException(erreur);</span>
-        }
-
-<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (nbEnfants &lt; NB_ENFANTS_MIN) {</span>
-<span class="fc" id="L30">            erreur = &quot;Le nombre d'enfants ne peut pas être négatif&quot;;</span>
-<span class="fc" id="L31">            throw new IllegalArgumentException(erreur);</span>
-        }
-
-<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (nbEnfantsHandicapes &lt; NB_ENF_HANDICAPES_MIN) {</span>
-<span class="fc" id="L35">            erreur = &quot;Le nombre d'enfants handicapés ne peut pas être négatif&quot;;</span>
+<span class="fc" id="L35">            erreur = &quot;Le revenu net ne peut pas être négatif&quot;;</span>
 <span class="fc" id="L36">            throw new IllegalArgumentException(erreur);</span>
         }
 
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (situationFamiliale == null) {</span>
-<span class="fc" id="L40">            erreur = &quot;La situation familiale ne peut pas être null&quot;;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (nbEnfants &lt; NB_ENFANTS_MIN) {</span>
+<span class="fc" id="L40">            erreur = &quot;Le nombre d'enfants ne peut pas être négatif&quot;;</span>
 <span class="fc" id="L41">            throw new IllegalArgumentException(erreur);</span>
         }
 
-<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (nbEnfantsHandicapes &gt; nbEnfants) {</span>
-<span class="fc" id="L45">            erreur = &quot;Le nombre d'enfants handicapés&quot; +</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (nbEnfantsHandicapes &lt; NB_ENF_HANDICAPES_MIN) {</span>
+<span class="fc" id="L45">            erreur = &quot;Le nombre d'enfants handicapés ne peut pas être négatif&quot;;</span>
+<span class="fc" id="L46">            throw new IllegalArgumentException(erreur);</span>
+        }
+
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (situationFamiliale == null) {</span>
+<span class="fc" id="L50">            erreur = &quot;La situation familiale ne peut pas être null&quot;;</span>
+<span class="fc" id="L51">            throw new IllegalArgumentException(erreur);</span>
+        }
+
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (nbEnfantsHandicapes &gt; nbEnfants) {</span>
+<span class="fc" id="L55">            erreur = &quot;Le nombre d'enfants handicapés&quot; +</span>
                     &quot; ne peut pas être supérieur au nombre d'enfants&quot;;
-<span class="fc" id="L47">            throw new IllegalArgumentException(erreur);</span>
+<span class="fc" id="L57">            throw new IllegalArgumentException(erreur);</span>
         }
 
-<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (nbEnfants &gt; NB_ENFANTS_MAX) {</span>
-<span class="fc" id="L51">            erreur = &quot;Le nombre d'enfants ne peut pas être supérieur à 7&quot;;</span>
-<span class="fc" id="L52">            throw new IllegalArgumentException(erreur);</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (nbEnfants &gt; NB_ENFANTS_MAX) {</span>
+<span class="fc" id="L61">            erreur = &quot;Le nombre d'enfants ne peut pas être supérieur à 7&quot;;</span>
+<span class="fc" id="L62">            throw new IllegalArgumentException(erreur);</span>
         }
 
-<span class="fc bfc" id="L55" title="All 6 branches covered.">        if (estparentIsole &amp;&amp; (situationFamiliale == SituationFamiliale.MARIE</span>
+<span class="fc bfc" id="L65" title="All 6 branches covered.">        if (estparentIsole &amp;&amp; (situationFamiliale == SituationFamiliale.MARIE</span>
                 || situationFamiliale == SituationFamiliale.PACSE)) {
-<span class="fc" id="L57">            erreur = &quot;Un parent isolé ne peut pas être marié ou pacsé&quot;;</span>
-<span class="fc" id="L58">            throw new IllegalArgumentException(erreur);</span>
+<span class="fc" id="L67">            erreur = &quot;Un parent isolé ne peut pas être marié ou pacsé&quot;;</span>
+<span class="fc" id="L68">            throw new IllegalArgumentException(erreur);</span>
         }
 
-<span class="fc bfc" id="L61" title="All 6 branches covered.">        boolean seul = situationFamiliale == SituationFamiliale.CELIBATAIRE</span>
+<span class="fc bfc" id="L71" title="All 6 branches covered.">        boolean seul = situationFamiliale == SituationFamiliale.CELIBATAIRE</span>
                 || situationFamiliale == SituationFamiliale.DIVORCE
                 || situationFamiliale == SituationFamiliale.VEUF;
-<span class="pc bpc" id="L64" title="1 of 4 branches missed.">        if (seul &amp;&amp;</span>
+<span class="pc bpc" id="L74" title="1 of 4 branches missed.">        if (seul &amp;&amp;</span>
                 revenuNetDeclarant2 &gt; REVENU_AUTORISE_DECLARANT2_SI_SEUL) {
-<span class="nc" id="L66">            erreur = &quot;Un célibataire, un divorcé ou un veuf&quot; +</span>
+<span class="nc" id="L76">            erreur = &quot;Un célibataire, un divorcé ou un veuf&quot; +</span>
                     &quot; ne peut pas avoir de revenu pour le déclarant 2&quot;;
-<span class="nc" id="L68">            throw new IllegalArgumentException(erreur);</span>
+<span class="nc" id="L78">            throw new IllegalArgumentException(erreur);</span>
         }
-<span class="fc" id="L70">    }</span>
+<span class="fc" id="L80">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

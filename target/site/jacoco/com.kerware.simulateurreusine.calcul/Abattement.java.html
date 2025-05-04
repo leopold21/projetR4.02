@@ -5,40 +5,53 @@ import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 
 <span class="nc" id="L6">public class Abattement {</span>
 
+    /**
+     * Calculates the tax allowance based on family situation and
+     * net income declared by members of the tax household.
+     *
+     * @param paramSituationFamilial the marital status
+     * (single, civil partnership, married, divorced or widowed)
+     * @param paramRevenuNetDeclarant1 the net income declared
+     * by the first person in the tax household
+     * @param paramRevenuNetDeclarant2 the net income declared
+     * by the second person in the tax household
+     *
+     * @return the sum of allowances calculated for each member of the tax household
+     */
     public static double calculerAbattement(
             SituationFamiliale paramSituationFamilial,
             double paramRevenuNetDeclarant1,
             double paramRevenuNetDeclarant2) {
-<span class="fc" id="L12">        long abt1 = Math.round(</span>
+<span class="fc" id="L25">        long abt1 = Math.round(</span>
                 paramRevenuNetDeclarant1 * ConstantesFiscales.TAUX_ABATTEMENT
         );
-<span class="fc" id="L15">        long abt2 = Math.round(</span>
+<span class="fc" id="L28">        long abt2 = Math.round(</span>
                 paramRevenuNetDeclarant2 * ConstantesFiscales.TAUX_ABATTEMENT
         );
 
-<span class="fc bfc" id="L19" title="All 2 branches covered.">        if (abt1 &gt; ConstantesFiscales.ABATTEMENT_MAX) {</span>
-<span class="fc" id="L20">            abt1 = ConstantesFiscales.ABATTEMENT_MAX;</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if (abt1 &gt; ConstantesFiscales.ABATTEMENT_MAX) {</span>
+<span class="fc" id="L33">            abt1 = ConstantesFiscales.ABATTEMENT_MAX;</span>
         }
-<span class="fc bfc" id="L22" title="All 4 branches covered.">        if ( paramSituationFamilial == SituationFamiliale.MARIE</span>
+<span class="fc bfc" id="L35" title="All 4 branches covered.">        if ( paramSituationFamilial == SituationFamiliale.MARIE</span>
                 || paramSituationFamilial == SituationFamiliale.PACSE ) {
-<span class="fc bfc" id="L24" title="All 2 branches covered.">            if (abt2 &gt; ConstantesFiscales.ABATTEMENT_MAX) {</span>
-<span class="fc" id="L25">                abt2 = ConstantesFiscales.ABATTEMENT_MAX;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">            if (abt2 &gt; ConstantesFiscales.ABATTEMENT_MAX) {</span>
+<span class="fc" id="L38">                abt2 = ConstantesFiscales.ABATTEMENT_MAX;</span>
             }
         }
 
-<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (abt1 &lt; ConstantesFiscales.ABATTEMENT_MIN) {</span>
-<span class="fc" id="L30">            abt1 = ConstantesFiscales.ABATTEMENT_MIN;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (abt1 &lt; ConstantesFiscales.ABATTEMENT_MIN) {</span>
+<span class="fc" id="L43">            abt1 = ConstantesFiscales.ABATTEMENT_MIN;</span>
         }
 
-<span class="fc bfc" id="L33" title="All 4 branches covered.">        if ( paramSituationFamilial == SituationFamiliale.MARIE</span>
+<span class="fc bfc" id="L46" title="All 4 branches covered.">        if ( paramSituationFamilial == SituationFamiliale.MARIE</span>
                 || paramSituationFamilial == SituationFamiliale.PACSE ) {
-<span class="fc bfc" id="L35" title="All 2 branches covered.">            if (abt2 &lt; ConstantesFiscales.ABATTEMENT_MIN) {</span>
-<span class="fc" id="L36">                abt2 = ConstantesFiscales.ABATTEMENT_MIN;</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">            if (abt2 &lt; ConstantesFiscales.ABATTEMENT_MIN) {</span>
+<span class="fc" id="L49">                abt2 = ConstantesFiscales.ABATTEMENT_MIN;</span>
             }
         }
 
         // double abattementFinal = abt1 + abt2;
-<span class="fc" id="L41">        return abt1 + abt2;</span>
+<span class="fc" id="L54">        return abt1 + abt2;</span>
     }
 
 }

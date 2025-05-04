@@ -3,36 +3,53 @@
 import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 
 <span class="nc" id="L5">public class Impot {</span>
-
+    /**
+     * Calculates gross income tax based on reference tax income and number of units.
+     *
+     * @param revenuFiscalReference tax income of reference
+     * @param nbParts number of tax household units
+     *
+     * @return gross tax amount
+     */
     public static double calculerImpotBrut(double revenuFiscalReference, double nbParts) {
-<span class="fc" id="L8">        double revenuImposable = revenuFiscalReference / nbParts;</span>
-<span class="fc" id="L9">        double montantImpot = 0;</span>
+<span class="fc" id="L15">        double revenuImposable = revenuFiscalReference / nbParts;</span>
+<span class="fc" id="L16">        double montantImpot = 0;</span>
 
-<span class="fc" id="L11">        int[] limites = ConstantesFiscales.TRANCHES;</span>
-<span class="fc" id="L12">        double[] taux = ConstantesFiscales.TAUX;</span>
+<span class="fc" id="L18">        int[] limites = ConstantesFiscales.TRANCHES;</span>
+<span class="fc" id="L19">        double[] taux = ConstantesFiscales.TAUX;</span>
 
-<span class="fc" id="L14">        int i = 0;</span>
+<span class="fc" id="L21">        int i = 0;</span>
         do {
-<span class="pc bpc" id="L16" title="1 of 4 branches missed.">            if (revenuImposable &gt;= limites[i] &amp;&amp; revenuImposable &lt; limites[i + 1]) {</span>
-<span class="fc" id="L17">                montantImpot += (revenuImposable - limites[i]) * taux[i];</span>
-<span class="fc" id="L18">                break;</span>
+<span class="pc bpc" id="L23" title="1 of 4 branches missed.">            if (revenuImposable &gt;= limites[i] &amp;&amp; revenuImposable &lt; limites[i + 1]) {</span>
+<span class="fc" id="L24">                montantImpot += (revenuImposable - limites[i]) * taux[i];</span>
+<span class="fc" id="L25">                break;</span>
             } else {
-<span class="fc" id="L20">                montantImpot += (limites[i + 1] - limites[i]) * taux[i];</span>
+<span class="fc" id="L27">                montantImpot += (limites[i + 1] - limites[i]) * taux[i];</span>
             }
-<span class="fc" id="L22">            i++;</span>
-<span class="pc bpc" id="L23" title="1 of 2 branches missed.">        } while (i &lt; taux.length);</span>
+<span class="fc" id="L29">            i++;</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        } while (i &lt; taux.length);</span>
 
-<span class="fc" id="L25">        montantImpot *= nbParts;</span>
-<span class="fc" id="L26">        return Math.round(montantImpot);</span>
+<span class="fc" id="L32">        montantImpot *= nbParts;</span>
+<span class="fc" id="L33">        return Math.round(montantImpot);</span>
     }
 
+    /**
+     * Calculates the net tax payable based on the household's gross tax, the exceptional
+     * contribution to high incomes, and the discount applied.
+     *
+     * @param impotBrutFoyer the household gross tax
+     * @param contributionExceptionnelle the exceptional tax on high incomes
+     * @param decote the amount of discount applied to gross tax
+     *
+     * @return the net tax amount
+     */
     public static double calculerImpotNet(
             double impotBrutFoyer,
             double contributionExceptionnelle,
             double decote
     ) {
-<span class="fc" id="L34">        double impotNet = impotBrutFoyer - decote + contributionExceptionnelle;</span>
-<span class="fc" id="L35">        return Math.round(Math.max(0, impotNet));</span>
+<span class="fc" id="L51">        double impotNet = impotBrutFoyer - decote + contributionExceptionnelle;</span>
+<span class="fc" id="L52">        return Math.round(Math.max(0, impotNet));</span>
     }
 
 }

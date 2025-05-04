@@ -12,16 +12,41 @@ import com.kerware.simulateur.SituationFamiliale;
     private static final double PART_VEUF_ENFANT = 1.0;
     private static final double PART_ENFANT_HANDICAPE = 0.5;
 
+    /**
+     *
+     * Calculates the number of declaring units based on family situation.
+     *
+     * @param paramSituationFamilial the marital status
+     * (single, civil partnership, married, divorced or widowed)
+     *
+     * @return the number of reporting shares by family situation
+     */
     public static double calculerPartsDeclarants(SituationFamiliale paramSituationFamilial){
-<span class="fc bfc" id="L16" title="All 2 branches covered.">        switch ( paramSituationFamilial ) {</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        switch ( paramSituationFamilial ) {</span>
             case MARIE:
             case PACSE:
-<span class="fc" id="L19">                return PART_COUPLE;</span>
+<span class="fc" id="L28">                return PART_COUPLE;</span>
             default:
-<span class="fc" id="L21">                return PART_DECLARANT_SEUL;</span>
+<span class="fc" id="L30">                return PART_DECLARANT_SEUL;</span>
         }
     }
 
+    /**
+     *
+     * Calculates the total number of units in the tax household,
+     * based on the family situation, the number of units
+     * declared, the number of children, the number of disabled children
+     * and whether the parent is a single parent.
+     *
+     * @param paramSituationFamilial the marital status
+     * (single, civil partnership, married, divorced or widowed)
+     * @param paramNbPartsDeclarants the number of shares declared
+     * @param paramNbEnfants the number of children in the family
+     * @param paramNbEnfantsHandicapes the among children, those with disabilities
+     * @param paramEstParentIsole whether the parent is single
+     *
+     * @return total number of household tax units
+     */
     public static double calculerPartsFoyer(
             SituationFamiliale paramSituationFamilial,
             double paramNbPartsDeclarants,
@@ -29,25 +54,25 @@ import com.kerware.simulateur.SituationFamiliale;
             int paramNbEnfantsHandicapes,
             boolean paramEstParentIsole
     ){
-<span class="fc" id="L32">        double parts = paramNbPartsDeclarants;</span>
+<span class="fc" id="L57">        double parts = paramNbPartsDeclarants;</span>
 
-<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (paramNbEnfants &lt;= 2) {</span>
-<span class="fc" id="L35">            parts += paramNbEnfants * PART_ENFANT;</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (paramNbEnfants &lt;= 2) {</span>
+<span class="fc" id="L60">            parts += paramNbEnfants * PART_ENFANT;</span>
         } else {
-<span class="fc" id="L37">            parts += (2 * PART_ENFANT) + ((paramNbEnfants - 2) * PART_TROISIEME_ENFANT_ET_SUIVANTS);</span>
+<span class="fc" id="L62">            parts += (2 * PART_ENFANT) + ((paramNbEnfants - 2) * PART_TROISIEME_ENFANT_ET_SUIVANTS);</span>
         }
 
-<span class="pc bpc" id="L40" title="1 of 4 branches missed.">        if (paramEstParentIsole &amp;&amp; paramNbEnfants &gt; 0) {</span>
-<span class="fc" id="L41">            parts += PART_PARENT_ISOLE;</span>
+<span class="pc bpc" id="L65" title="1 of 4 branches missed.">        if (paramEstParentIsole &amp;&amp; paramNbEnfants &gt; 0) {</span>
+<span class="fc" id="L66">            parts += PART_PARENT_ISOLE;</span>
         }
 
-<span class="pc bpc" id="L44" title="1 of 4 branches missed.">        if (paramSituationFamilial == SituationFamiliale.VEUF &amp;&amp; paramNbEnfants &gt; 0) {</span>
-<span class="fc" id="L45">            parts += PART_VEUF_ENFANT;</span>
+<span class="pc bpc" id="L69" title="1 of 4 branches missed.">        if (paramSituationFamilial == SituationFamiliale.VEUF &amp;&amp; paramNbEnfants &gt; 0) {</span>
+<span class="fc" id="L70">            parts += PART_VEUF_ENFANT;</span>
         }
 
-<span class="fc" id="L48">        parts += paramNbEnfantsHandicapes * PART_ENFANT_HANDICAPE;</span>
+<span class="fc" id="L73">        parts += paramNbEnfantsHandicapes * PART_ENFANT_HANDICAPE;</span>
 
-<span class="fc" id="L50">        return parts;</span>
+<span class="fc" id="L75">        return parts;</span>
     }
 
 }

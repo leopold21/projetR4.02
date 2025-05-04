@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Revenu.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SimulateurImpot2024</a> &gt; <a href="index.source.html" class="el_package">com.kerware.simulateurreusine.calcul</a> &gt; <span class="el_source">Revenu.java</span></div><h1>Revenu.java</h1><pre class="source lang-java linenums">package com.kerware.simulateurreusine.calcul;
 
 <span class="nc" id="L3">public class Revenu {</span>
-
+    /**
+     *
+     *  Calculates the household's reference tax income
+     *  based on the net income declared by the members of the tax household
+     *  and the applicable tax allowance.
+     *
+     * @param paramRevenuNetDeclarant1 the net income declared
+     * by the first person in the tax household
+     * @param paramRevenuNetDeclarant2 net income declared
+     * by the second person in the tax household
+     * @param paramAbattement the deduction from total household income
+     *
+     * @return the household reference tax income
+     */
     public static double calculerRevenuFiscal(
             int paramRevenuNetDeclarant1,
             int paramRevenuNetDeclarant2,
             double paramAbattement){
-<span class="fc" id="L9">        double revenuFiscalReference = paramRevenuNetDeclarant1 + paramRevenuNetDeclarant2;</span>
-<span class="fc" id="L10">        revenuFiscalReference -= paramAbattement;</span>
-<span class="fc bfc" id="L11" title="All 2 branches covered.">        if ( revenuFiscalReference &lt; 0 ) {</span>
-<span class="fc" id="L12">            revenuFiscalReference = 0;</span>
+<span class="fc" id="L22">        double revenuFiscalReference = paramRevenuNetDeclarant1 + paramRevenuNetDeclarant2;</span>
+<span class="fc" id="L23">        revenuFiscalReference -= paramAbattement;</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if ( revenuFiscalReference &lt; 0 ) {</span>
+<span class="fc" id="L25">            revenuFiscalReference = 0;</span>
         }
-<span class="fc" id="L14">        return revenuFiscalReference;</span>
+<span class="fc" id="L27">        return revenuFiscalReference;</span>
     }
 
 }

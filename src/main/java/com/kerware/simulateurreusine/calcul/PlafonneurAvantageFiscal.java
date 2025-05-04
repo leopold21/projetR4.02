@@ -5,8 +5,8 @@ import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 public class PlafonneurAvantageFiscal {
 
     /**
-     * Applies a ceiling to the tax reduction based on the number of units declared and the number of units
-     * in the household.
+     * Applies a ceiling to the tax reduction based on the number of units
+     * declared and the number of units in the household.
      *
      * @param montantImpotDeclarant the tax amount calculated for the tax filer
      * @param montantImpotFoyer the tax amount calculated for the household

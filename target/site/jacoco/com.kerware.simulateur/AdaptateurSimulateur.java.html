@@ -15,91 +15,179 @@ import com.kerware.simulateurreusine.SimulateurReusine;
     private int nbEnfantsSituationHandicap;
     private boolean parentIsole;
 
+    /**
+     * Defines the net income of the first declarant.
+     *
+     * @param rn the net income of first filer
+     */
 
     @Override
     public void setRevenusNetDeclarant1(int rn) {
-<span class="fc" id="L21">        this.revenusNetDecl1 = rn;</span>
-<span class="fc" id="L22">    }</span>
-
-    @Override
-    public void setRevenusNetDeclarant2(int rn) {
-<span class="fc" id="L26">        this.revenusNetDecl2 = rn;</span>
+<span class="fc" id="L26">        this.revenusNetDecl1 = rn;</span>
 <span class="fc" id="L27">    }</span>
 
+    /**
+     * Defines the net income of the second declarant.
+     *
+     * @param rn the net income of second filer
+     */
     @Override
-    public void setSituationFamiliale(SituationFamiliale sf) {
-<span class="fc" id="L31">        this.situationFamiliale = sf;</span>
-<span class="fc" id="L32">    }</span>
-
-    @Override
-    public void setNbEnfantsACharge(int nbe) {
-<span class="fc" id="L36">        this.nbEnfantsACharge = nbe;</span>
+    public void setRevenusNetDeclarant2(int rn) {
+<span class="fc" id="L36">        this.revenusNetDecl2 = rn;</span>
 <span class="fc" id="L37">    }</span>
 
+    /**
+     *
+     * Defines the declarant's family situation.
+     *
+     * @param sf the marital status (single, civil union, married, divorced or widowed)
+     */
+    @Override
+    public void setSituationFamiliale(SituationFamiliale sf) {
+<span class="fc" id="L47">        this.situationFamiliale = sf;</span>
+<span class="fc" id="L48">    }</span>
+
+    /**
+     *Defines the number of dependent children in the tax household.
+     *
+     * @param nbe the number of dependent children
+     */
+    @Override
+    public void setNbEnfantsACharge(int nbe) {
+<span class="fc" id="L57">        this.nbEnfantsACharge = nbe;</span>
+<span class="fc" id="L58">    }</span>
+
+    /**
+     * Defines the number of disabled children in the tax household.
+     *
+     * @param nbesh the number of disabled children
+     */
     @Override
     public void setNbEnfantsSituationHandicap(int nbesh) {
-<span class="fc" id="L41">        this.nbEnfantsSituationHandicap = nbesh;</span>
-<span class="fc" id="L42">    }</span>
+<span class="fc" id="L67">        this.nbEnfantsSituationHandicap = nbesh;</span>
+<span class="fc" id="L68">    }</span>
+
+    /**
+     * Defines whether the parent is isolated.
+     *
+     * @param pi true if the parent is isolated, false otherwise
+     */
 
     @Override
     public void setParentIsole(boolean pi) {
-<span class="fc" id="L46">        this.parentIsole = pi;</span>
-<span class="fc" id="L47">    }</span>
+<span class="fc" id="L78">        this.parentIsole = pi;</span>
+<span class="fc" id="L79">    }</span>
+
+    /**
+     * Calculates net income tax using tax household information.
+     */
 
     @Override
     public void calculImpotSurRevenuNet() {
-<span class="fc" id="L51">         simulateur.calculImpot(</span>
+<span class="fc" id="L87">         simulateur.calculImpot(</span>
                  revenusNetDecl1,
                  revenusNetDecl2,
                  situationFamiliale,
                  nbEnfantsACharge,
                  nbEnfantsSituationHandicap,
                  parentIsole);
-<span class="fc" id="L58">    }</span>
+<span class="fc" id="L94">    }</span>
 
+    /**
+     *
+     Returns the net income declared by the first tax filer in the tax household.
+     *
+     * @return the net income declared by the first tax filer in the tax household
+     */
     @Override
     public int getRevenuNetDeclatant1() {
-<span class="fc" id="L62">        return revenusNetDecl1;</span>
+<span class="fc" id="L104">        return revenusNetDecl1;</span>
     }
 
+    /**
+     *
+     * Returns the net income declared by the second tax filer in the tax household.
+     *
+     * @return the net income declared by the second tax filer in the tax household
+     */
     @Override
     public int getRevenuNetDeclatant2() {
-<span class="fc" id="L67">        return revenusNetDecl2;</span>
+<span class="fc" id="L115">        return revenusNetDecl2;</span>
     }
 
+    /**
+     *
+     Returns the amount of the exceptional contribution.
+     *
+     * @return the amount of exceptional contribution
+     */
     @Override
     public double getContribExceptionnelle() {
-<span class="fc" id="L72">        return simulateur.getMontantContributionExceptionnelle();</span>
+<span class="fc" id="L126">        return simulateur.getMontantContributionExceptionnelle();</span>
     }
 
+    /**
+     *
+     * Returns the household's reference tax income.
+     *
+     * @return the household reference tax income
+     */
     @Override
     public int getRevenuFiscalReference() {
-<span class="fc" id="L77">        return (int)simulateur.getRevenuReference();</span>
+<span class="fc" id="L137">        return (int)simulateur.getRevenuReference();</span>
     }
 
+    /**
+     * Returns the amount of the allowance.
+     *
+     * @return the amount of allowance
+     */
     @Override
     public int getAbattement() {
-<span class="fc" id="L82">        return (int)simulateur.getAbattement();</span>
+<span class="fc" id="L147">        return (int)simulateur.getAbattement();</span>
     }
 
+    /**
+     *
+     * Returns the number of units in the tax household.
+     *
+     * @return the number of household tax units
+     */
     @Override
     public double getNbPartsFoyerFiscal() {
-<span class="fc" id="L87">        return simulateur.getNbParts();</span>
+<span class="fc" id="L158">        return simulateur.getNbParts();</span>
     }
 
+    /**
+     *
+     * Returns the tax amount before application of the discount.
+     *
+     * @return the amount of income tax before application of the discount
+     */
     @Override
     public int getImpotAvantDecote() {
-<span class="fc" id="L92">        return (int)simulateur.getImpotAvantDecote();</span>
+<span class="fc" id="L169">        return (int)simulateur.getImpotAvantDecote();</span>
     }
 
+    /**
+     *
+     * Returns the amount of the discount applicable to the tax household's gross tax.
+     *
+     * @return the amount of discount applicable to the gross tax of the tax household
+     */
     @Override
     public int getDecote() {
-<span class="fc" id="L97">        return (int)simulateur.getDecote();</span>
+<span class="fc" id="L180">        return (int)simulateur.getDecote();</span>
     }
 
+    /**
+     * Returns the amount of net income tax after application of the discount.
+     *
+     * @return the net tax amount
+     */
     @Override
     public int getImpotSurRevenuNet() {
-<span class="fc" id="L102">        return (int)simulateur.getImpotNet();</span>
+<span class="fc" id="L190">        return (int)simulateur.getImpotNet();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -4,37 +4,47 @@ import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 
 <span class="nc" id="L5">public class ContributionExceptionnelle {</span>
 
+    /**
+     * Calculates the amount of the Contribution Exceptionnelle sur les Hauts Revenus (CEHR)
+     * based on reference tax income and number of tax units.
+     *
+     * @param paramRevenuFiscalReference the reference tax income
+     * @param paramNbPartsDeclarants the number of shares declared
+     *
+     * @return the CEHR amount rounded to the nearest whole number
+     */
+
     public static double calculer(
             double paramRevenuFiscalReference,
             double paramNbPartsDeclarants
     ) {
-<span class="fc" id="L11">        int[] limites = ConstantesFiscales.CEHR;</span>
-<span class="fc" id="L12">        double[] tauxCelib = ConstantesFiscales.TAUX_CEHR_CELIB;</span>
-<span class="fc" id="L13">        double[] tauxCouple = ConstantesFiscales.TAUX_CEHR_COUPLE;</span>
+<span class="fc" id="L21">        int[] limites = ConstantesFiscales.CEHR;</span>
+<span class="fc" id="L22">        double[] tauxCelib = ConstantesFiscales.TAUX_CEHR_CELIB;</span>
+<span class="fc" id="L23">        double[] tauxCouple = ConstantesFiscales.TAUX_CEHR_COUPLE;</span>
 
-<span class="fc" id="L15">        double montant = 0;</span>
-<span class="fc" id="L16">        int i = 0;</span>
+<span class="fc" id="L25">        double montant = 0;</span>
+<span class="fc" id="L26">        int i = 0;</span>
 
         do {
-<span class="pc bpc" id="L19" title="1 of 4 branches missed.">            if (paramRevenuFiscalReference &gt;= limites[i]</span>
+<span class="pc bpc" id="L29" title="1 of 4 branches missed.">            if (paramRevenuFiscalReference &gt;= limites[i]</span>
                     &amp;&amp; paramRevenuFiscalReference &lt; limites[i + 1]) {
-<span class="fc bfc" id="L21" title="All 2 branches covered.">                if (paramNbPartsDeclarants == 1) {</span>
-<span class="fc" id="L22">                    montant += (paramRevenuFiscalReference - limites[i]) * tauxCelib[i];</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">                if (paramNbPartsDeclarants == 1) {</span>
+<span class="fc" id="L32">                    montant += (paramRevenuFiscalReference - limites[i]) * tauxCelib[i];</span>
                 } else {
-<span class="fc" id="L24">                    montant += (paramRevenuFiscalReference - limites[i]) * tauxCouple[i];</span>
+<span class="fc" id="L34">                    montant += (paramRevenuFiscalReference - limites[i]) * tauxCouple[i];</span>
                 }
-<span class="fc" id="L26">                break;</span>
+<span class="fc" id="L36">                break;</span>
             } else {
-<span class="fc bfc" id="L28" title="All 2 branches covered.">                if (paramNbPartsDeclarants == 1) {</span>
-<span class="fc" id="L29">                    montant += (limites[i + 1] - limites[i]) * tauxCelib[i];</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">                if (paramNbPartsDeclarants == 1) {</span>
+<span class="fc" id="L39">                    montant += (limites[i + 1] - limites[i]) * tauxCelib[i];</span>
                 } else {
-<span class="fc" id="L31">                    montant += (limites[i + 1] - limites[i]) * tauxCouple[i];</span>
+<span class="fc" id="L41">                    montant += (limites[i + 1] - limites[i]) * tauxCouple[i];</span>
                 }
             }
-<span class="fc" id="L34">            i++;</span>
-<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        } while (i &lt; limites.length - 1);</span>
+<span class="fc" id="L44">            i++;</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        } while (i &lt; limites.length - 1);</span>
 
-<span class="fc" id="L37">        return Math.round(montant);</span>
+<span class="fc" id="L47">        return Math.round(montant);</span>
     }
 
 }

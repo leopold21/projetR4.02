@@ -16,7 +16,8 @@ public class PartsFiscales {
      *
      * Calculates the number of declaring units based on family situation.
      *
-     * @param paramSituationFamilial the marital status (single, civil partnership, married, divorced or widowed)
+     * @param paramSituationFamilial the marital status
+     * (single, civil partnership, married, divorced or widowed)
      *
      * @return the number of reporting shares by family situation
      */
@@ -32,10 +33,13 @@ public class PartsFiscales {
 
     /**
      *
-     * Calculates the total number of units in the tax household, based on the family situation, the number of units
-     * declared, the number of children, the number of disabled children and whether the parent is a single parent.
+     * Calculates the total number of units in the tax household,
+     * based on the family situation, the number of units
+     * declared, the number of children, the number of disabled children
+     * and whether the parent is a single parent.
      *
-     * @param paramSituationFamilial the marital status (single, civil partnership, married, divorced or widowed)
+     * @param paramSituationFamilial the marital status
+     * (single, civil partnership, married, divorced or widowed)
      * @param paramNbPartsDeclarants the number of shares declared
      * @param paramNbEnfants the number of children in the family
      * @param paramNbEnfantsHandicapes the among children, those with disabilities

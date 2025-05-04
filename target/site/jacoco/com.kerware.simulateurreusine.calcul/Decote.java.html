@@ -4,30 +4,39 @@ import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 
 <span class="nc" id="L5">public class Decote {</span>
 
+    /**
+     * Calculates the discount applicable to tax based on the amount of tax and the number of units
+     * in the tax household.
+     *
+     * @param montantImpot the gross tax amount
+     * @param nbParts the number of tax household units
+     *
+     * @return the discount amount
+     */
     public static double calculer(double montantImpot, double nbParts) {
-<span class="fc" id="L8">        double decote = 0;</span>
+<span class="fc" id="L17">        double decote = 0;</span>
 
-<span class="fc bfc" id="L10" title="All 2 branches covered.">        if (nbParts == 1) {</span>
-<span class="fc bfc" id="L11" title="All 2 branches covered.">            if (montantImpot &lt; ConstantesFiscales.SEUIL_DECOTE_SEUL) {</span>
-<span class="fc" id="L12">                decote = ConstantesFiscales.DECOTE_MAX_SEUL;</span>
-<span class="fc" id="L13">                decote -= montantImpot * ConstantesFiscales.TAUX_DECOTE;</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        if (nbParts == 1) {</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">            if (montantImpot &lt; ConstantesFiscales.SEUIL_DECOTE_SEUL) {</span>
+<span class="fc" id="L21">                decote = ConstantesFiscales.DECOTE_MAX_SEUL;</span>
+<span class="fc" id="L22">                decote -= montantImpot * ConstantesFiscales.TAUX_DECOTE;</span>
             }
         }
 
-<span class="fc bfc" id="L17" title="All 2 branches covered.">        if (nbParts == 2) {</span>
-<span class="fc bfc" id="L18" title="All 2 branches covered.">            if (montantImpot &lt; ConstantesFiscales.SEUIL_DECOTE_COUPLE) {</span>
-<span class="fc" id="L19">                decote = ConstantesFiscales.DECOTE_MAX_COUPLE;</span>
-<span class="fc" id="L20">                decote -= montantImpot * ConstantesFiscales.TAUX_DECOTE;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (nbParts == 2) {</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            if (montantImpot &lt; ConstantesFiscales.SEUIL_DECOTE_COUPLE) {</span>
+<span class="fc" id="L28">                decote = ConstantesFiscales.DECOTE_MAX_COUPLE;</span>
+<span class="fc" id="L29">                decote -= montantImpot * ConstantesFiscales.TAUX_DECOTE;</span>
             }
         }
 
-<span class="fc" id="L24">        decote = Math.round(decote);</span>
+<span class="fc" id="L33">        decote = Math.round(decote);</span>
 
-<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (montantImpot &lt;= decote) {</span>
-<span class="fc" id="L27">            decote = montantImpot;</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (montantImpot &lt;= decote) {</span>
+<span class="fc" id="L36">            decote = montantImpot;</span>
         }
 
-<span class="fc" id="L30">        return decote;</span>
+<span class="fc" id="L39">        return decote;</span>
     }
 
 }

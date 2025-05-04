@@ -155,7 +155,8 @@ public final class SimulateurReusine {
      *
      * @param paramRevenuNetDeclarant1 net income declared by the first person
      * @param paramRevenuNetDeclarant2 net income declared by the second person
-     * @param paramSituationFamilial marital status (single, civil partnership, married, divorced or widowed)
+     * @param paramSituationFamilial marital status
+     * (single, civil partnership, married, divorced or widowed)
      * @param paramNbEnfants number of children in the family
      * @param paramNbEnfantsHandicapes among children, those with disabilities
      * @param paramEstParentIsol whether the parent is single

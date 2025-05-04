@@ -6,11 +6,15 @@ import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 public class Abattement {
 
     /**
-     * Calculates the tax allowance based on family situation and net income declared by members of the tax household.
+     * Calculates the tax allowance based on family situation and
+     * net income declared by members of the tax household.
      *
-     * @param paramSituationFamilial the marital status (single, civil partnership, married, divorced or widowed)
-     * @param paramRevenuNetDeclarant1 the net income declared by the first person in the tax household
-     * @param paramRevenuNetDeclarant2 the net income declared by the second person in the tax household
+     * @param paramSituationFamilial the marital status
+     * (single, civil partnership, married, divorced or widowed)
+     * @param paramRevenuNetDeclarant1 the net income declared
+     * by the first person in the tax household
+     * @param paramRevenuNetDeclarant2 the net income declared
+     * by the second person in the tax household
      *
      * @return the sum of allowances calculated for each member of the tax household
      */
