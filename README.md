@@ -61,8 +61,14 @@ L'enjeu de ce travail est d'assurer une **modularisation claire**, une **lisibil
 - ✅ Le taux de couverture **dépasse les 90%**
 - ✅ Aucune **erreur ni warning** détecté par **Checkstyle**
 - ✅ L'adaptateur permet une **transition fluide** vers la nouvelle architecture
-- ℹ️ Note importante : la classe Simulateur.java d’origine a été conservée volontairement dans le dépôt afin d'assurer la traçabilité des changements. Elle n'est plus utilisée dans l’exécution des tests, mais elle est comptabilisée dans les rapports de couverture.
-→ Pour obtenir une couverture réelle > 90%, les tests sont basés sur notre version réusinée via l’AdaptateurSimulateur.
+- ℹ️ **Note importante** : la classe `Simulateur.java` d’origine a été **volontairement conservée dans le dépôt** pour garantir la traçabilité des changements apportés.  
+- Bien qu’elle **ne soit plus utilisée dans notre logique métier ni dans l'exécution des tests**, elle est **toujours analysée** :
+-
+- - par **JaCoCo**, dans les rapports de couverture du code (ce qui fait chuter artificiellement le pourcentage global),
+- - par **Checkstyle**, dans les rapports de vérification du style.
+-
+- ✅ **Tous les tests unitaires sont désormais basés sur la classe `SimulateurReusine` via l'`AdaptateurSimulateur`**, garantissant une **couverture réelle > 90 %** et **zéro warning Checkstyle** sur notre implémentation.
+
 
 ---
 
