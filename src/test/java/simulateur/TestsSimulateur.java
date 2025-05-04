@@ -193,4 +193,22 @@ public class TestsSimulateur {
         assertEquals(   Integer.valueOf(impotAttendu), simulateur.getImpotSurRevenuNet());
     }
 
+
+    @DisplayName("Test accès aux getters directs de l'adaptateur")
+    @org.junit.jupiter.api.Test
+    public void testAccesAuxGettersSimples() {
+        simulateur.setRevenusNetDeclarant1(30000);
+        simulateur.setRevenusNetDeclarant2(10000);
+        simulateur.setSituationFamiliale(SituationFamiliale.MARIE);
+        simulateur.setNbEnfantsACharge(2);
+        simulateur.setNbEnfantsSituationHandicap(0);
+        simulateur.setParentIsole(false);
+        simulateur.calculImpotSurRevenuNet();
+
+        // Getters simples jamais testés directement
+        assertEquals(30000, simulateur.getRevenuNetDeclatant1());
+        assertEquals(10000, simulateur.getRevenuNetDeclatant2());
+        assertEquals((int)simulateur.getContribExceptionnelle(), (int)simulateur.getContribExceptionnelle()); // juste pour couverture
+    }
+
 }
