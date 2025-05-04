@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static junit.framework.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -209,6 +210,10 @@ public class TestsSimulateur {
         assertEquals(30000, simulateur.getRevenuNetDeclatant1());
         assertEquals(10000, simulateur.getRevenuNetDeclatant2());
         assertEquals((int)simulateur.getContribExceptionnelle(), (int)simulateur.getContribExceptionnelle()); // juste pour couverture
+
+        assertTrue(simulateur.getRevenuFiscalReference() > 0);
+        assertTrue(simulateur.getImpotAvantDecote() >= 0);
+        assertTrue(simulateur.getDecote() >= 0);
     }
 
 }
