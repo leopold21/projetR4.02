@@ -208,6 +208,11 @@ public final class SimulateurReusine {
         return  (int) montantImpotFoyer;
     }
 
+    /**
+     * Displays final net income tax calculation information.
+     *
+     * @param situation marital status (single, civil partnership, married, divorced or widowed)
+     */
     private void afficherInformationsFinales(SituationFamiliale situation) {
         System.out.println("--------------------------------------------------");
         System.out.println("Revenu net declarant1 : " + revenuNetDeclarant1);
