@@ -1,17 +1,32 @@
-# Réusinage d'un code initial sur le simulateur des impots
-L'objectif de ce projet est de réusiner le code de base du simulateur fiscal.
-Des tests déjà disponibles et fonctionnels sont fournis.
-Le code de départ emploie une unique méthode. Il faut donc diviser cette méthode en diverses sous-méthodes et classes.
+# 💼 Réusinage du simulateur d’impôt
 
-## Auteurs
-- MARIE Léo-paul 
-- BEUVE Léopold
+Ce projet a pour objectif de réusiner un code existant servant à simuler le calcul de l’impôt sur le revenu.  
+Le code d’origine était lourd : une seule méthode concentrait l’ensemble de la logique métier.
 
-## Deadline
-Le projet est à rendre pour le lundi 5 mai
+## ✅ Objectifs
 
-## Langages utilisés
-- Java
+- Structurer le code en plusieurs classes et méthodes distinctes  
+- Optimiser la lisibilité, la maintenabilité et la testabilité  
+- Conserver tous les tests initiaux fonctionnels  
+  _(un test supplémentaire a été ajouté pour garantir une couverture > 90 %)_
 
-## Remerciement 
-- M.CHARLES Olivier
+## 👥 Auteurs
+
+- **MARIE Léo-Paul**  
+- **BEUVE Léopold**
+
+## 🗓️ Date limite
+
+**Lundi 5 mai**
+
+## 🔧 Technologies utilisées
+
+- Java (JDK 17)  
+- JUnit 5  
+- Maven  
+- Checkstyle  
+- JaCoCo
+
+## 🙏 Remerciements
+
+Un grand merci à **M. CHARLES Olivier** pour son encadrement et ses conseils.
