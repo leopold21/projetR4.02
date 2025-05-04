@@ -7,10 +7,11 @@ public class ContributionExceptionnelle {
     /**
      * Calculates the amount of the Contribution Exceptionnelle sur les Hauts Revenus (CEHR)
      * based on reference tax income and number of tax units.
-     * @param paramRevenuFiscalReference
-     * @param paramNbPartsDeclarants number of shares declared
      *
-     * @return CEHR amount rounded to the nearest whole number
+     * @param paramRevenuFiscalReference the reference tax income
+     * @param paramNbPartsDeclarants the number of shares declared
+     *
+     * @return the CEHR amount rounded to the nearest whole number
      */
 
     public static double calculer(

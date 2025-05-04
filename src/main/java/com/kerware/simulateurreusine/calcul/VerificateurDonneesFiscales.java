@@ -15,10 +15,10 @@ public class VerificateurDonneesFiscales {
      *  Checks the validity of the data provided for calculating tax allowances.
      *  This method lifts an exception if one of the validity conditions is not met.
      *
-     * @param revenuNetDeclarant1 net income declared by the first person
-     * @param revenuNetDeclarant2 net income declared by the second person
-     * @param nbEnfants number of children in the family
-     * @param nbEnfantsHandicapes among children, those with disabilities
+     * @param revenuNetDeclarant1 the net income declared by the first person
+     * @param revenuNetDeclarant2 the net income declared by the second person
+     * @param nbEnfants the number of children in the family
+     * @param nbEnfantsHandicapes the among children, those with disabilities
      * @param estparentIsole whether the parent is single
      */
     public static void verifierDonnees(
