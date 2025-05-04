@@ -1,5 +1,5 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-SimulateurImpot2024,com.kerware.simulateurreusine,SimulateurReusine,18,232,0,0,6,58,6,5,6,5
+SimulateurImpot2024,com.kerware.simulateurreusine,SimulateurReusine,18,243,0,0,6,53,6,7,6,7
 SimulateurImpot2024,com.kerware.simulateur,SituationFamiliale,0,33,0,0,0,6,0,1,0,1
 SimulateurImpot2024,com.kerware.simulateur,AdaptateurSimulateur,25,69,0,0,6,21,6,11,6,11
 SimulateurImpot2024,com.kerware.simulateur,Simulateur,1127,0,100,0,218,0,63,0,11,0
