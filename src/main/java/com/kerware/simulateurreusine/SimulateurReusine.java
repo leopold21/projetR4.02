@@ -12,42 +12,45 @@ import com.kerware.simulateurreusine.calcul.ContributionExceptionnelle;
 import com.kerware.simulateurreusine.outils.ConstantesFiscales;
 
 
-// Version réusinée du Simulateur, adaptée pour une meilleure modularité et lisibilité
+
+// Reworked version of the Simulator, adapted for improved modularity and readability
 public final class SimulateurReusine {
 
-    // revenu net
+    // net income
     private int revenuNetDeclarant1 = 0;
     private int revenuNetDeclarant2 = 0;
-    // nb enfants
+
+    // number of children
     private int nbEnfants = 0;
-    // nb enfants handicapés
+    // number of disabled children
     private int nbEnfantsHandicapes = 0;
 
-    // revenu fiscal de référence
+    //reference tax income
     private double revenuFiscalReference = 0;
 
-    // abattement
+    //allowance
     private double abattement = 0;
 
-    // nombre de parts des  déclarants
+    // number of shares held by declarants
     private double nbPartsDeclarants = 0;
-    // nombre de parts du foyer fiscal
+    // number of tax household units
     private double nbPartsFoyer = 0;
 
-    // decote
+    //discount
     private double decote = 0;
     // impôt des déclarants
     private double montantImpotDeclarant = 0;
-    // impôt du foyer fiscal
+
+    //tax declarants
     private double montantImpotFoyer = 0;
     private double montantImpotAvantDecote = 0;
-    // parent isolé
+    // single parent
     private boolean estParentIsole = false;
-    // Contribution exceptionnelle sur les hauts revenus
+    //
+    //Exceptional tax on high incomes
     private double montantContributionExceptionnelle = 0;
 
-    // Getters pour adapter le code legacy pour les tests unitaires
-
+    // Getters to adapt legacy code for unit testing
     /**
      *
      * Returns the household's reference tax income.
@@ -168,37 +171,41 @@ public final class SimulateurReusine {
                 paramRevenuNetDeclarant2, paramSituationFamilial,
                 paramNbEnfants, paramNbEnfantsHandicapes, paramEstParentIsol);
 
-        // Initialisation des variables
+
+        //Variable initialization
         initialiserVariables(paramRevenuNetDeclarant1, paramRevenuNetDeclarant2,
                 paramNbEnfants, paramNbEnfantsHandicapes, paramEstParentIsol);
 
-        // Abattement EXIGENCE : EXG_IMPOT_02
+        //Abatement REQUIREMENT : EXG_IMPOT_02
         this.abattement = Abattement.calculerAbattement(
                 paramSituationFamilial, revenuNetDeclarant1, revenuNetDeclarant2);
         this.revenuFiscalReference = Revenu.calculerRevenuFiscal(
                 revenuNetDeclarant1, revenuNetDeclarant2, this.abattement);
 
-        // parts déclarants EXIG  : EXG_IMPOT_03
+        //reporting units REQUIREMENT  : EXG_IMPOT_03
         nbPartsDeclarants = PartsFiscales.calculerPartsDeclarants(paramSituationFamilial);
         nbPartsFoyer = PartsFiscales.calculerPartsFoyer(paramSituationFamilial, nbPartsDeclarants,
             this.nbEnfants, this.nbEnfantsHandicapes, estParentIsole);
 
-        // Contribution exceptionnelle sur les hauts revenus EXIGENCE : EXG_IMPOT_07:
+
+        //Exceptional tax on high incomes REQUIREMENT: EXG_IMPOT_07
         montantContributionExceptionnelle = ContributionExceptionnelle.calculer(
                 revenuFiscalReference, nbPartsDeclarants);
 
-        // Calcul impôt des declarants : EXIGENCE : EXG_IMPOT_04
+        //Tax calculation for tax filers : REQUIREMENT : EXG_IMPOT_04
         montantImpotDeclarant = Impot.calculerImpotBrut(revenuFiscalReference, nbPartsDeclarants);
 
-        // Calcul impôt foyer fiscal complet : EXIGENCE : EXG_IMPOT_04
+        // Complete tax household calculation: REQUIREMENT: EXG_IMPOT_04
         montantImpotFoyer = Impot.calculerImpotBrut(revenuFiscalReference, nbPartsFoyer);
 
-        // Vérification de la baisse d'impôt autorisée : EXIGENCE : EXG_IMPOT_05
-        // baisse impot
+
+        // Check authorized tax reduction: REQUIREMENT: EXG_IMPOT_05
+        // tax reduction
         montantImpotAvantDecote = PlafonneurAvantageFiscal.appliquerPlafond(
                 montantImpotDeclarant, montantImpotFoyer, nbPartsDeclarants, nbPartsFoyer );
 
-        // Calcul de la decote : EXIGENCE : EXG_IMPOT_06
+
+        // Discount calculation : REQUIREMENT : EXG_IMPOT_06
         decote = Decote.calculer(montantImpotFoyer, nbPartsDeclarants);
 
         montantImpotFoyer = Impot.calculerImpotNet(
