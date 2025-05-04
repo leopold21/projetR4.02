@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Decote.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SimulateurImpot2024</a> &gt; <a href="index.source.html" class="el_package">com.kerware.simulateurreusine.calcul</a> &gt; <span class="el_source">Decote.java</span></div><h1>Decote.java</h1><pre class="source lang-java linenums">package com.kerware.simulateurreusine.calcul;
+
+import com.kerware.simulateurreusine.outils.ConstantesFiscales;
+
+<span class="nc" id="L5">public class Decote {</span>
+
+    public static double calculer(double montantImpot, double nbParts) {
+<span class="fc" id="L8">        double decote = 0;</span>
+
+<span class="fc bfc" id="L10" title="All 2 branches covered.">        if (nbParts == 1) {</span>
+<span class="fc bfc" id="L11" title="All 2 branches covered.">            if (montantImpot &lt; ConstantesFiscales.SEUIL_DECOTE_SEUL) {</span>
+<span class="fc" id="L12">                decote = ConstantesFiscales.DECOTE_MAX_SEUL;</span>
+<span class="fc" id="L13">                decote -= montantImpot * ConstantesFiscales.TAUX_DECOTE;</span>
+            }
+        }
+
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        if (nbParts == 2) {</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">            if (montantImpot &lt; ConstantesFiscales.SEUIL_DECOTE_COUPLE) {</span>
+<span class="fc" id="L19">                decote = ConstantesFiscales.DECOTE_MAX_COUPLE;</span>
+<span class="fc" id="L20">                decote -= montantImpot * ConstantesFiscales.TAUX_DECOTE;</span>
+            }
+        }
+
+<span class="fc" id="L24">        decote = Math.round(decote);</span>
+
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (montantImpot &lt;= decote) {</span>
+<span class="fc" id="L27">            decote = montantImpot;</span>
+        }
+
+<span class="fc" id="L30">        return decote;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

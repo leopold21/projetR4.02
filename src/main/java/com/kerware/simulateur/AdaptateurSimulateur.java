@@ -1,8 +1,12 @@
 package com.kerware.simulateur;
 
-public class AdaptateurSimulateur implements ICalculateurImpot {
+// Ajout de cette ligne pour pouvoir utiliser
+// le nouveau simulateur que l'on va réusiner petit à petit
+import com.kerware.simulateurreusine.SimulateurReusine;
 
-    private Simulateur simulateur = new Simulateur();
+public final class AdaptateurSimulateur implements ICalculateurImpot {
+
+    private SimulateurReusine simulateur = new SimulateurReusine();
 
     private int revenusNetDecl1 = 0;
     private int revenusNetDecl2 = 0;
@@ -44,7 +48,13 @@ public class AdaptateurSimulateur implements ICalculateurImpot {
 
     @Override
     public void calculImpotSurRevenuNet() {
-         simulateur.calculImpot(revenusNetDecl1, revenusNetDecl2 ,situationFamiliale, nbEnfantsACharge, nbEnfantsSituationHandicap, parentIsole);
+         simulateur.calculImpot(
+                 revenusNetDecl1,
+                 revenusNetDecl2,
+                 situationFamiliale,
+                 nbEnfantsACharge,
+                 nbEnfantsSituationHandicap,
+                 parentIsole);
     }
 
     @Override
@@ -59,7 +69,7 @@ public class AdaptateurSimulateur implements ICalculateurImpot {
 
     @Override
     public double getContribExceptionnelle() {
-        return simulateur.getContribExceptionnelle();
+        return simulateur.getMontantContributionExceptionnelle();
     }
 
     @Override

@@ -1,0 +1,16 @@
+com\kerware\simulateurreusine\SimulateurReusine.class
+com\kerware\simulateur\Simulateur.class
+com\kerware\simulateurreusine\calcul\Impot.class
+com\kerware\simulateurreusine\calcul\Decote.class
+com\kerware\simulateur\Simulateur$1.class
+com\kerware\simulateurreusine\calcul\PartsFiscales.class
+com\kerware\simulateurreusine\outils\ConstantesFiscales.class
+com\kerware\simulateurreusine\calcul\Abattement.class
+com\kerware\simulateur\AdaptateurSimulateur.class
+com\kerware\simulateurreusine\calcul\Revenu.class
+com\kerware\simulateur\ICalculateurImpot.class
+com\kerware\simulateurreusine\calcul\VerificateurDonneesFiscales.class
+com\kerware\simulateurreusine\calcul\PlafonneurAvantageFiscal.class
+com\kerware\simulateurreusine\calcul\PartsFiscales$1.class
+com\kerware\simulateur\SituationFamiliale.class
+com\kerware\simulateurreusine\calcul\ContributionExceptionnelle.class

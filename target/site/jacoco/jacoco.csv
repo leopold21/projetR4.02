@@ -1,0 +1,14 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+SimulateurImpot2024,com.kerware.simulateurreusine,SimulateurReusine,18,243,0,0,6,53,6,7,6,7
+SimulateurImpot2024,com.kerware.simulateur,SituationFamiliale,0,33,0,0,0,6,0,1,0,1
+SimulateurImpot2024,com.kerware.simulateur,AdaptateurSimulateur,25,69,0,0,6,21,6,11,6,11
+SimulateurImpot2024,com.kerware.simulateur,Simulateur,1127,0,100,0,218,0,63,0,11,0
+SimulateurImpot2024,com.kerware.simulateurreusine.outils,ConstantesFiscales,3,112,0,0,1,5,1,1,1,1
+SimulateurImpot2024,com.kerware.simulateurreusine.calcul,PartsFiscales,3,59,2,10,1,13,3,6,1,2
+SimulateurImpot2024,com.kerware.simulateurreusine.calcul,PlafonneurAvantageFiscal,3,34,0,2,1,9,1,2,1,1
+SimulateurImpot2024,com.kerware.simulateurreusine.calcul,VerificateurDonneesFiscales,10,93,2,28,3,25,3,14,1,1
+SimulateurImpot2024,com.kerware.simulateurreusine.calcul,Impot,3,84,2,4,1,15,3,3,1,2
+SimulateurImpot2024,com.kerware.simulateurreusine.calcul,Revenu,3,17,0,2,1,5,1,2,1,1
+SimulateurImpot2024,com.kerware.simulateurreusine.calcul,Abattement,3,51,0,16,1,13,1,9,1,1
+SimulateurImpot2024,com.kerware.simulateurreusine.calcul,ContributionExceptionnelle,3,108,2,8,1,16,3,4,1,1
+SimulateurImpot2024,com.kerware.simulateurreusine.calcul,Decote,3,46,0,10,1,13,1,6,1,1
